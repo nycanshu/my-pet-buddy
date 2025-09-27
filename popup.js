@@ -11,10 +11,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('my-pet-toggle');
     const catGrid = document.getElementById('my-pet-cat-grid');
     const positionButtons = document.querySelectorAll('.my-pet-position-btn');
+    const websiteLink = document.getElementById('website-link');
     
     let selectedCat = 'cat-1'; // Default selection
     let selectedPosition = 0; // Default position (bottom)
     let availablePets = []; // Will store detected pets
+
+    // Set website link (will be updated when GitHub Pages is enabled)
+    if (websiteLink) {
+        websiteLink.href = 'https://nycanshu.github.io/my-pet-buddy';
+    }
+
+    // Update logo source to use Chrome extension URL
+    const logoImg = document.querySelector('.my-pet-title img');
+    if (logoImg) {
+        logoImg.src = chrome.runtime.getURL('/logo.png');
+    }
 
     // Pet types configuration - Add new pet types here
     const PET_TYPES = ['cat', 'dog', 'bird', 'rabbit', 'hamster'];

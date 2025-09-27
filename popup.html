@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Pet Buddy</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -28,6 +30,54 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .my-pet-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .my-pet-social-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .my-pet-social-link {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .my-pet-social-link.github {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #e9ecef;
+        }
+
+        .my-pet-social-link.github:hover {
+            background: #333;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .my-pet-social-link.website {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+
+        .my-pet-social-link.website:hover {
+            background: #1976d2;
+            color: white;
+            transform: translateY(-1px);
         }
 
         .my-pet-title {
@@ -317,11 +367,62 @@
             color: #666;
             margin-top: 10px;
         }
+
+        /* Attribution Footer */
+        .my-pet-attribution {
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 12px 20px;
+            margin-top: 10px;
+        }
+
+        .my-pet-attribution-text {
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .my-pet-attribution-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .my-pet-attribution-link:hover {
+            color: #5a6fd8;
+        }
+
+        .my-pet-attribution-link i {
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="my-pet-header">
-        <h2 class="my-pet-title">My Pet Buddy</h2>
+        <div class="my-pet-header-left">
+            <h2 class="my-pet-title">
+                <img src="logo.png" alt="My Pet Buddy" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">
+                My Pet Buddy
+            </h2>
+            <div class="my-pet-social-links">
+                <a href="https://github.com/nycanshu" target="_blank" class="my-pet-social-link github" title="GitHub Profile">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" id="website-link" target="_blank" class="my-pet-social-link website" title="Website">
+                    <i class="fas fa-globe"></i>
+                </a>
+            </div>
+        </div>
         <div class="my-pet-toggle" id="my-pet-toggle">
             <div class="my-pet-toggle-slider"></div>
         </div>
@@ -350,6 +451,19 @@
         <div class="my-pet-cat-grid" id="my-pet-cat-grid">
             <!-- Dynamic pet items will be generated here -->
         </div>
+    </div>
+
+    <!-- Attribution Footer -->
+    <div class="my-pet-attribution">
+        <p class="my-pet-attribution-text">
+            Made with <i class="fas fa-heart" style="color: #ff6b6b;"></i> by 
+            <a href="https://github.com/nycanshu" target="_blank" class="my-pet-attribution-link">
+                <i class="fab fa-github"></i> nycanshu
+            </a>
+            <a href="https://www.linkedin.com/in/okay-anshu/" target="_blank" class="my-pet-attribution-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </p>
     </div>
 
     <script src="popup.js"></script>

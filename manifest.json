@@ -26,11 +26,11 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["pets/*.png"],
+      "resources": ["pets/*.png", "icons/*.png"],
       "matches": ["<all_urls>"]
     }
   ],
   "author": "My Pet Buddy Team",
-  "homepage_url": "https://github.com/your-username/my-pet-buddy",
+  "homepage_url": "https://nycanshu.github.io/my-pet-buddy",
   "short_name": "Pet Buddy"
 }
