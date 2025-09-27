@@ -1,85 +1,73 @@
-# My Pet Buddy - Chrome Extension
+# My Pet Buddy - Virtual Pet Companion 🐱🐶
 
-A lightweight Chrome extension that allows you to select up to two pets (cat 🐱 and dog 🐶) that will parade along the bottom edge of your browser window. Pets perform a playful jump animation when you hover over them.
+A delightful Chrome extension that brings adorable animated pets to your browser! Choose from cats, dogs, and other cute animals that parade along your screen, creating a fun and engaging browsing experience for pet lovers and animal enthusiasts.
 
-## Features
+## ✨ Features
 
-- **Lightweight**: Under 50KB total size, no external dependencies
-- **Modern UI**: Clean, minimalist popup interface with flexbox layout
-- **Pet Selection**: Choose up to 2 pets from cat and dog options
-- **Animated Parade**: Pets smoothly parade from left to right across the bottom
-- **Interactive**: Hover over pets to see them jump with a bounce animation
-- **Persistent**: Selections saved across browser sessions
-- **Non-intrusive**: Pets don't interfere with webpage interactions
+- **🎨 Multiple Pet Types**: Choose from cats, dogs, birds, rabbits, and more
+- **🖼️ PNG Image Support**: High-quality pet images with smooth animations
+- **🎯 Interactive Pets**: Hover over pets to see them pop and play
+- **📍 Position Control**: Place pets at bottom, middle, or top of your screen
+- **⚡ Lightweight**: Optimized for performance with minimal resource usage
+- **💾 Persistent Settings**: Your preferences are saved across browser sessions
+- **🎨 Modern UI**: Clean, professional popup interface with consistent design
+- **🔧 Easy Customization**: Add new pet types by simply adding images to the pets folder
 
-## Installation & Testing
+## 🚀 Quick Start Guide
 
-### Load as Unpacked Extension
+### Loading the Extension Locally
 
-1. **Open Chrome Extensions Page**:
+1. **Download/Clone the Extension**:
+   ```bash
+   git clone <your-repo-url>
+   cd my-pet-buddy
+   ```
+
+2. **Open Chrome Extensions Page**:
    - Navigate to `chrome://extensions/`
    - Enable "Developer mode" (toggle in top-right corner)
 
-2. **Load the Extension**:
+3. **Load the Extension**:
    - Click "Load unpacked"
-   - Select the `my-pet-buddy` folder containing the extension files
-   - The extension should appear in your extensions list
+   - Select the `my-pet-buddy` folder containing all extension files
+   - The extension should appear in your extensions list with your custom icon
 
-3. **Test the Extension**:
-   - Click the extension icon in the toolbar
-   - Select one or two pets using the checkboxes
-   - Click "Save & Activate"
-   - Navigate to any webpage to see your pets parading
-   - Hover over pets to see them jump
+4. **Test the Extension**:
+   - Click the "My Pet Buddy" icon in the browser toolbar
+   - Toggle the extension ON/OFF using the switch at the top
+   - Select your preferred pet position (Bottom/Middle/Top)
+   - Choose your pet companion from the gallery
+   - Navigate to any webpage to see your pets parading!
 
-### File Structure
+## 🎮 How to Use
 
-```
-my-pet-buddy/
-├── manifest.json      # Extension configuration (Manifest V3)
-├── popup.html         # Extension popup interface
-├── popup.js           # Popup logic and storage management
-├── content.js         # Pet animations and webpage integration
-└── README.md          # This file
-```
+1. **Enable the Extension**: Toggle the switch in the popup to activate pets
+2. **Choose Position**: Select where you want pets to appear (Bottom/Middle/Top)
+3. **Select Your Pet**: Click on any pet from the gallery to choose your companion
+4. **Enjoy**: Navigate to any website and watch your pet parade along the screen!
+5. **Interact**: Hover over your pet to see it pop and play
 
-## Usage
+## 🐛 Troubleshooting
 
-1. **Select Pets**: Open the extension popup and check the pets you want (Cat 🐱 and/or Dog 🐶)
-2. **Activate**: Click "Save & Activate" to start the parade
-3. **Interact**: Hover over any pet to see it jump with a bounce animation
-4. **Disable**: Click "Disable Pets" to stop the parade
-
-## Technical Details
-
-- **Manifest Version**: V3 (latest Chrome extension standard)
-- **Permissions**: `storage` (for saving selections), `activeTab` (for content injection)
-- **Animations**: CSS keyframes for smooth 60fps performance
-- **Storage**: Chrome Storage API for persistence across sessions
-- **Performance**: GPU-accelerated transforms, lightweight emoji-based pets
-- **Compatibility**: Works on all websites without breaking layouts
-
-## Customization
-
-The extension is designed to be easily extensible:
-
-- **Add More Pets**: Modify the pet options in `popup.html` and `popup.js`
-- **Change Animations**: Update the CSS keyframes in `content.js`
-- **Styling**: Modify the CSS in `popup.html` for different visual themes
-- **Pet Limit**: Adjust the maximum pet selection limit in `popup.js`
-
-## Troubleshooting
-
-- **Pets Not Appearing**: Ensure the extension is enabled and pets are selected
-- **Animation Issues**: Check that the webpage allows content scripts
+- **Pets Not Appearing**: Ensure the extension is enabled and a pet is selected
+- **Images Not Loading**: Check that images are in the `pets/` folder with correct naming
+- **Animation Issues**: Verify that the webpage allows content scripts
 - **Storage Issues**: Clear extension data in Chrome settings if needed
-- **Performance**: The extension is optimized for minimal resource usage
+- **Performance**: This extension is optimized for minimal resource usage
 
-## Browser Compatibility
+## 🌐 Browser Compatibility
 
-- Chrome 88+ (Manifest V3 support)
-- Chromium-based browsers (Edge, Brave, etc.)
+- **Chrome**: 88+ (Manifest V3 support)
+- **Chromium-based**: Edge, Brave, Opera, etc.
+- **Firefox**: Not supported (uses Chrome-specific APIs)
+
+
+## 📄 License
+
+This project is open source and available under the MIT License.
 
 ---
 
-**Note**: This extension uses only vanilla HTML, CSS, and JavaScript with no external libraries to maintain its lightweight nature.
+**Made with ❤️ for pet lovers and animal enthusiasts!**
+
+*Bring joy to your browsing experience with adorable virtual companions!* 🐾
