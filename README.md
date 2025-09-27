@@ -19,7 +19,7 @@ A delightful Chrome extension that brings adorable animated pets to your browser
 
 1. **Download/Clone the Extension**:
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/nycanshu/my-pet-buddy.git
    cd my-pet-buddy
    ```
 
