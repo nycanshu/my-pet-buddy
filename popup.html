@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pet Buddy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            width: 300px;
+            min-height: 200px;
+            padding: 20px;
+        }
+
+        .my-pet-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .my-pet-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .my-pet-subtitle {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .my-pet-selection {
+            margin-bottom: 20px;
+        }
+
+        .my-pet-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .my-pet-option:hover {
+            background-color: #f5f5f5;
+        }
+
+        .my-pet-radio {
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            accent-color: #4CAF50;
+        }
+
+        .my-pet-customization {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .my-pet-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .my-pet-control {
+            margin-bottom: 15px;
+        }
+
+        .my-pet-control-label {
+            display: block;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .my-pet-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+            margin-bottom: 5px;
+        }
+
+        .my-pet-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .my-pet-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .my-pet-value {
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+            float: right;
+        }
+
+        .my-pet-label {
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .my-pet-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .my-pet-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .my-pet-save {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .my-pet-save:hover {
+            background-color: #45a049;
+            transform: translateY(-1px);
+        }
+
+        .my-pet-disable {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .my-pet-disable:hover {
+            background-color: #da190b;
+            transform: translateY(-1px);
+        }
+
+        .my-pet-status {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="my-pet-header">
+        <h2 class="my-pet-title">My Pet Buddy</h2>
+        <p class="my-pet-subtitle">Choose your companions!</p>
+    </div>
+
+    <div class="my-pet-selection">
+        <div class="my-pet-option">
+            <input type="radio" id="my-pet-cat" name="my-pet-selection" class="my-pet-radio" value="cat">
+            <label for="my-pet-cat" class="my-pet-label">Cat 🐱</label>
+        </div>
+        <div class="my-pet-option">
+            <input type="radio" id="my-pet-dog" name="my-pet-selection" class="my-pet-radio" value="dog">
+            <label for="my-pet-dog" class="my-pet-label">Dog 🐶</label>
+        </div>
+        <div class="my-pet-option">
+            <input type="radio" id="my-pet-none" name="my-pet-selection" class="my-pet-radio" value="none">
+            <label for="my-pet-none" class="my-pet-label">None</label>
+        </div>
+    </div>
+
+    <div class="my-pet-customization">
+        <h3 class="my-pet-section-title">Customization</h3>
+        
+        <div class="my-pet-control">
+            <label for="my-pet-y-position" class="my-pet-control-label">Y Position (from bottom):</label>
+            <input type="range" id="my-pet-y-position" class="my-pet-slider" min="0" max="100" value="0">
+            <span id="my-pet-y-value" class="my-pet-value">0px</span>
+        </div>
+        
+        <div class="my-pet-control">
+            <label for="my-pet-speed" class="my-pet-control-label">Speed:</label>
+            <input type="range" id="my-pet-speed" class="my-pet-slider" min="5" max="30" value="10">
+            <span id="my-pet-speed-value" class="my-pet-value">10s</span>
+        </div>
+    </div>
+
+    <div class="my-pet-buttons">
+        <button id="my-pet-save" class="my-pet-btn my-pet-save">Save & Activate</button>
+        <button id="my-pet-disable" class="my-pet-btn my-pet-disable">Disable Pets</button>
+    </div>
+
+    <div class="my-pet-status" id="my-pet-status"></div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
