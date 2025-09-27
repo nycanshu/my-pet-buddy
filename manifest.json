@@ -1,14 +1,21 @@
 {
   "manifest_version": 3,
-  "name": "My Pet Buddy",
+  "name": "My Pet Buddy - Virtual Pet Companion",
   "version": "1.0",
-  "description": "Select pets to parade along your browser edge!",
+  "description": "Add adorable animated pets to your browser! Choose from cats, dogs, and other cute animals that parade along your screen. Perfect for pet lovers, animal enthusiasts, and anyone who wants a fun browsing companion.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "permissions": [
     "storage",
     "activeTab"
   ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "My Pet Buddy - Virtual Pet Companion"
   },
   "content_scripts": [
     {
@@ -16,5 +23,48 @@
       "js": ["pets.js", "content.js"],
       "run_at": "document_end"
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["pets/*.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "author": "My Pet Buddy Team",
+  "homepage_url": "https://github.com/your-username/my-pet-buddy",
+  "short_name": "Pet Buddy",
+  "categories": ["entertainment", "lifestyle", "productivity"],
+  "keywords": [
+    "pet",
+    "pets",
+    "cat",
+    "cats", 
+    "dog",
+    "dogs",
+    "animal",
+    "animals",
+    "virtual pet",
+    "pet companion",
+    "cute animals",
+    "browser pet",
+    "desktop pet",
+    "pet extension",
+    "animal lover",
+    "pet lover",
+    "cute pets",
+    "animated pets",
+    "pet buddy",
+    "companion",
+    "browser companion",
+    "fun extension",
+    "entertainment",
+    "cute",
+    "adorable",
+    "parade",
+    "walking pets",
+    "pet animation",
+    "browser animation",
+    "screen pet",
+    "virtual companion"
   ]
 }

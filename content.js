@@ -11,19 +11,20 @@
     window.myPetBuddyLoaded = true;
 
     // Get pet selections and enabled status from storage
-    chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-speed'], function(result) {
+    chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-speed', 'my-pet-selected-cat'], function(result) {
         const selections = result['my-pet-selections'] || [];
         const isEnabled = result['my-pet-enabled'] || false;
         const yPosition = result['my-pet-y-position'] || 0;
         const speed = result['my-pet-speed'] || 10;
+        const selectedCat = result['my-pet-selected-cat'] || 'cat-1';
 
         if (isEnabled && selections.length > 0) {
-            createPetParade(selections, yPosition, speed);
+            createPetParade(selections, yPosition, speed, selectedCat);
         }
     });
 
     // Create the pet parade container and pets
-    function createPetParade(selections, yPosition, speed) {
+    function createPetParade(selections, yPosition, speed, selectedCat) {
         // Remove existing pets if any
         const existingContainer = document.getElementById('my-pet-container');
         if (existingContainer) {
@@ -46,7 +47,7 @@
 
         // Create pets based on selections
         selections.forEach((petType, index) => {
-            const pet = createPet(petType, index, speed);
+            const pet = createPet(petType, index, speed, selectedCat);
             container.appendChild(pet);
         });
 
@@ -63,7 +64,7 @@
     }
 
     // Create individual pet element
-    function createPet(petType, index, speed) {
+    function createPet(petType, index, speed, selectedCat) {
         const pet = document.createElement('div');
         pet.id = `my-pet-${petType}`;
         pet.className = `my-pet-animal my-pet-${petType}`;
@@ -80,11 +81,12 @@
         petContent.className = `my-pet-sprite my-pet-${petType}-sprite`;
         petContent.innerHTML = petDef.html();
         
-        // If it's a GIF-based pet, set the GIF source
-        if (petDef.type === 'gif') {
-            const gifImg = petContent.querySelector('.pet-gif');
-            if (gifImg) {
-                gifImg.src = petDef.gif.walk; // Start with walking GIF
+        // If it's a PNG-based pet, set the image source based on selected cat
+        if (petDef.type === 'png') {
+            const petImg = petContent.querySelector('.pet-image');
+            if (petImg) {
+                // Use the selected cat image with Chrome extension URL
+                petImg.src = chrome.runtime.getURL(`pets/${selectedCat}.png`);
             }
         }
         
@@ -166,6 +168,8 @@
         const pets = container.querySelectorAll('.my-pet-animal');
         
         pets.forEach((pet, index) => {
+            // Get pet type from the pet element
+            const petType = pet.id.replace('my-pet-', '');
             let isHovered = false;
             let animationId = null;
             let startTime = Date.now();
@@ -199,23 +203,31 @@
                 // Stop custom animation
                 if (animationId) {
                     cancelAnimationFrame(animationId);
+                    animationId = null;
                 }
                 
-                // Apply visual effects - only size increase
+                // Apply visual effects - scale up and pause
                 this.style.setProperty('transform', 'scale(1.5)', 'important');
                 this.style.setProperty('transition', 'all 0.3s ease', 'important');
                 this.style.setProperty('z-index', '10000', 'important');
                 
-                // Change GIF to hover state if it's a GIF-based pet
-                const petDef = PetManager.getPet(petType);
-                if (petDef && petDef.type === 'gif') {
-                    const gifImg = this.querySelector('.pet-gif');
-                    if (gifImg && petDef.gif.hover) {
-                        gifImg.src = petDef.gif.hover;
+                // Apply hover effects for PNG-based pets
+                try {
+                    const currentPetType = this.id.replace('my-pet-', '');
+                    // console.log('Current pet type:', currentPetType);
+                    const petDef = PetManager.getPet(currentPetType);
+                    if (petDef && petDef.type === 'png') {
+                        const petImg = this.querySelector('.pet-image');
+                        if (petImg) {
+                            // Add hover animation class
+                            petImg.style.animation = 'pet-hover 0.5s ease-in-out infinite';
+                        }
                     }
+                } catch (error) {
+                    console.error('Error in hover effect:', error);
                 }
                 
-                console.log('Pet paused at position:', currentPosition);
+                // console.log('Pet paused at position:', currentPosition);
             });
             
             pet.addEventListener('mouseleave', function() {
@@ -228,19 +240,27 @@
                 this.style.setProperty('transform', 'scale(1)', 'important');
                 this.style.setProperty('z-index', 'auto', 'important');
                 
-                // Restore walking GIF if it's a GIF-based pet
-                const petDef = PetManager.getPet(petType);
-                if (petDef && petDef.type === 'gif') {
-                    const gifImg = this.querySelector('.pet-gif');
-                    if (gifImg && petDef.gif.walk) {
-                        gifImg.src = petDef.gif.walk;
+                // Restore walking animation for PNG-based pets
+                try {
+                    const currentPetType = this.id.replace('my-pet-', '');
+                    // console.log('Restoring pet type:', currentPetType);
+                    const petDef = PetManager.getPet(currentPetType);
+                    if (petDef && petDef.type === 'png') {
+                        const petImg = this.querySelector('.pet-image');
+                        if (petImg) {
+                            // Restore walking animation
+                            petImg.style.animation = 'pet-walk 0.8s ease-in-out infinite';
+                        }
                     }
+                } catch (error) {
+                    console.error('Error in unhover effect:', error);
                 }
                 
                 // Resume custom animation from current position
+                isAnimating = true;
                 animate();
                 
-                console.log('Pet resumed parading from position:', currentPosition);
+                // console.log('Pet resumed parading from position:', currentPosition);
             });
         });
     }
@@ -248,15 +268,16 @@
     // Listen for storage changes to update pets dynamically
     chrome.storage.onChanged.addListener(function(changes, namespace) {
         if (namespace === 'sync') {
-            if (changes['my-pet-selections'] || changes['my-pet-enabled'] || changes['my-pet-y-position'] || changes['my-pet-speed']) {
-                chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-speed'], function(result) {
+            if (changes['my-pet-selections'] || changes['my-pet-enabled'] || changes['my-pet-y-position'] || changes['my-pet-speed'] || changes['my-pet-selected-cat']) {
+                chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-speed', 'my-pet-selected-cat'], function(result) {
                     const selections = result['my-pet-selections'] || [];
                     const isEnabled = result['my-pet-enabled'] || false;
                     const yPosition = result['my-pet-y-position'] || 0;
                     const speed = result['my-pet-speed'] || 10;
+                    const selectedCat = result['my-pet-selected-cat'] || 'cat-1';
 
                     if (isEnabled && selections.length > 0) {
-                        createPetParade(selections, yPosition, speed);
+                        createPetParade(selections, yPosition, speed, selectedCat);
                     } else {
                         // Remove pets if disabled
                         const container = document.getElementById('my-pet-container');

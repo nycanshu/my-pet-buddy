@@ -13,119 +13,240 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #ffffff;
-            width: 300px;
-            min-height: 200px;
-            padding: 20px;
+            background: #f8f9fa;
+            width: 400px;
+            min-height: 500px;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
         }
 
         .my-pet-header {
-            text-align: center;
-            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .my-pet-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
+            color: #2c3e50;
+            margin: 0;
         }
 
-        .my-pet-subtitle {
-            font-size: 12px;
-            color: #666;
+        .my-pet-toggle {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #e9ecef;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .my-pet-toggle.active {
+            background: #007bff;
+        }
+
+        .my-pet-toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .my-pet-toggle.active .my-pet-toggle-slider {
+            transform: translateX(26px);
         }
 
         .my-pet-selection {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .my-pet-option {
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background-color 0.2s ease;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
         }
 
         .my-pet-option:hover {
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .my-pet-option.selected {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border-color: #4CAF50;
         }
 
         .my-pet-radio {
-            margin-right: 10px;
-            width: 16px;
-            height: 16px;
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
             accent-color: #4CAF50;
         }
 
-        .my-pet-customization {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f8f9fa;
+
+        .my-pet-cat-gallery {
+            background: white;
             border-radius: 8px;
+            padding: 15px;
+            margin: 0 20px 15px 20px;
             border: 1px solid #e9ecef;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
         }
 
-        .my-pet-section-title {
+        .my-pet-gallery-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .my-pet-cat-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .my-pet-group-header {
             font-size: 14px;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 15px;
+            color: #495057;
+            margin-bottom: 8px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 5px;
+        }
+
+        .my-pet-group {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        }
+
+        .my-pet-cat-item {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
         }
 
-        .my-pet-control {
-            margin-bottom: 15px;
+        .my-pet-cat-item:hover {
+            background: #e9ecef;
+            border-color: #007bff;
         }
 
-        .my-pet-control-label {
-            display: block;
+        .my-pet-cat-item.selected {
+            border-color: #007bff;
+            background: #007bff;
+            color: white;
+        }
+
+        .my-pet-cat-image {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .my-pet-cat-item:hover .my-pet-cat-image {
+            transform: scale(1.05);
+        }
+
+        .my-pet-cat-name {
             font-size: 12px;
-            color: #555;
-            margin-bottom: 5px;
             font-weight: 500;
+            margin-top: 6px;
+            color: #6c757d;
         }
 
-        .my-pet-slider {
-            width: 100%;
-            height: 6px;
-            border-radius: 3px;
-            background: #ddd;
-            outline: none;
-            -webkit-appearance: none;
-            margin-bottom: 5px;
+        .my-pet-cat-item.selected .my-pet-cat-name {
+            color: white;
         }
 
-        .my-pet-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #4CAF50;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        .my-pet-position-control {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 20px 8px 20px;
+            border: 1px solid #e9ecef;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
         }
 
-        .my-pet-slider::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #4CAF50;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .my-pet-value {
-            font-size: 11px;
-            color: #666;
+        .my-pet-position-title {
+            font-size: 16px;
             font-weight: 600;
-            float: right;
+            color: #495057;
+            margin-bottom: 15px;
+            text-align: left;
         }
+
+        .my-pet-position-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .my-pet-position-btn {
+            flex: 1;
+            padding: 10px 6px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+            color: #6c757d;
+        }
+
+        .my-pet-position-btn:hover {
+            border-color: #007bff;
+            background: #e7f3ff;
+        }
+
+        .my-pet-position-btn.active {
+            border-color: #007bff;
+            background: #007bff;
+            color: white;
+        }
+
+        .my-pet-position-btn .position-icon {
+            font-size: 14px;
+            margin-bottom: 2px;
+            display: block;
+        }
+
 
         .my-pet-label {
             font-size: 14px;
@@ -137,38 +258,57 @@
         .my-pet-buttons {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         .my-pet-btn {
-            padding: 10px 16px;
+            padding: 15px 20px;
             border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .my-pet-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .my-pet-btn:hover::before {
+            left: 100%;
         }
 
         .my-pet-save {
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
         }
 
         .my-pet-save:hover {
-            background-color: #45a049;
-            transform: translateY(-1px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
         }
 
         .my-pet-disable {
-            background-color: #f44336;
+            background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
             color: white;
         }
 
         .my-pet-disable:hover {
-            background-color: #da190b;
-            transform: translateY(-1px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(244, 67, 54, 0.3);
         }
 
         .my-pet-status {
@@ -182,46 +322,35 @@
 <body>
     <div class="my-pet-header">
         <h2 class="my-pet-title">My Pet Buddy</h2>
-        <p class="my-pet-subtitle">Choose your companions!</p>
-    </div>
-
-    <div class="my-pet-selection">
-        <div class="my-pet-option">
-            <input type="radio" id="my-pet-cat" name="my-pet-selection" class="my-pet-radio" value="cat">
-            <label for="my-pet-cat" class="my-pet-label">Cat 🐱</label>
-        </div>
-        <div class="my-pet-option">
-            <input type="radio" id="my-pet-dog" name="my-pet-selection" class="my-pet-radio" value="dog">
-            <label for="my-pet-dog" class="my-pet-label">Dog 🐶</label>
-        </div>
-        <div class="my-pet-option">
-            <input type="radio" id="my-pet-none" name="my-pet-selection" class="my-pet-radio" value="none">
-            <label for="my-pet-none" class="my-pet-label">None</label>
+        <div class="my-pet-toggle" id="my-pet-toggle">
+            <div class="my-pet-toggle-slider"></div>
         </div>
     </div>
 
-    <div class="my-pet-customization">
-        <h3 class="my-pet-section-title">Customization</h3>
-        
-        <div class="my-pet-control">
-            <label for="my-pet-y-position" class="my-pet-control-label">Y Position (from bottom):</label>
-            <input type="range" id="my-pet-y-position" class="my-pet-slider" min="0" max="100" value="0">
-            <span id="my-pet-y-value" class="my-pet-value">0px</span>
-        </div>
-        
-        <div class="my-pet-control">
-            <label for="my-pet-speed" class="my-pet-control-label">Speed:</label>
-            <input type="range" id="my-pet-speed" class="my-pet-slider" min="5" max="30" value="10">
-            <span id="my-pet-speed-value" class="my-pet-value">10s</span>
+    <div class="my-pet-position-control">
+        <h3 class="my-pet-position-title">Pet Position</h3>
+        <div class="my-pet-position-options">
+            <div class="my-pet-position-btn" data-position="0">
+                <span class="position-icon">⬇️</span>
+                Bottom
+            </div>
+            <div class="my-pet-position-btn" data-position="50">
+                <span class="position-icon">↕️</span>
+                Middle
+            </div>
+            <div class="my-pet-position-btn" data-position="100">
+                <span class="position-icon">⬆️</span>
+                Top
+            </div>
         </div>
     </div>
 
-    <div class="my-pet-buttons">
-        <button id="my-pet-save" class="my-pet-btn my-pet-save">Save & Activate</button>
-        <button id="my-pet-disable" class="my-pet-btn my-pet-disable">Disable Pets</button>
+    <div class="my-pet-cat-gallery">
+        <h3 class="my-pet-gallery-title">Choose Your Pet Companion</h3>
+        <div class="my-pet-cat-grid" id="my-pet-cat-grid">
+            <!-- Dynamic pet items will be generated here -->
+        </div>
     </div>
-
-    <div class="my-pet-status" id="my-pet-status"></div>
 
     <script src="popup.js"></script>
 </body>

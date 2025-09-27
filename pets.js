@@ -7,11 +7,11 @@ const PETS = {
         emoji: '🐱',
         color: '#ff9500',
         size: { width: 60, height: 60 },
-        type: 'gif', // New property to indicate GIF-based pet
-        gif: {
-            walk: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif', // Walking cat GIF
-            idle: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif', // Idle cat GIF
-            hover: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif' // Hover cat GIF
+        type: 'png', // Updated to use PNG images
+        images: {
+            walk: 'pets/cat-1.png', // Default cat image for walking
+            idle: 'pets/cat-1.png', // Default cat image for idle
+            hover: 'pets/cat-1.png' // Default cat image for hover
         },
         animations: {
             walk: 'pet-walk',
@@ -19,8 +19,8 @@ const PETS = {
             idle: 'pet-idle'
         },
         html: () => `
-            <div class="pet-gif-container">
-                <img class="pet-gif" src="" alt="Cat" />
+            <div class="pet-image-container">
+                <img class="pet-image" src="" alt="Cat" />
             </div>
         `,
         css: () => `
@@ -33,7 +33,7 @@ const PETS = {
 
             @keyframes pet-hover {
                 0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.1); }
+                50% { transform: scale(1.2); }
             }
 
             @keyframes pet-idle {
@@ -41,7 +41,7 @@ const PETS = {
                 50% { transform: translateY(-1px); }
             }
 
-            .my-pet-cat .pet-gif-container {
+            .my-pet-cat .pet-image-container {
                 position: relative;
                 width: 100%;
                 height: 100%;
@@ -50,68 +50,22 @@ const PETS = {
                 justify-content: center;
             }
 
-            .my-pet-cat .pet-gif {
+            .my-pet-cat .pet-image {
                 width: 60px;
                 height: 60px;
                 object-fit: contain;
                 animation: pet-walk 0.8s ease-in-out infinite;
-                image-rendering: pixelated;
-                image-rendering: -moz-crisp-edges;
-                image-rendering: crisp-edges;
+                transition: all 0.3s ease;
+                cursor: pointer;
             }
 
-            .my-pet-cat:hover .pet-gif {
+            .my-pet-cat:hover .pet-image {
                 animation: pet-hover 0.5s ease-in-out infinite;
+                transform: scale(1.1);
             }
         `
     },
 
-    dog: {
-        name: 'Dog',
-        emoji: '🐶',
-        color: '#8B4513',
-        size: { width: 60, height: 60 },
-        type: 'gif',
-        gif: {
-            walk: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif', // Walking dog GIF
-            idle: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif', // Idle dog GIF
-            hover: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif' // Hover dog GIF
-        },
-        animations: {
-            walk: 'pet-walk',
-            hover: 'pet-hover',
-            idle: 'pet-idle'
-        },
-        html: () => `
-            <div class="pet-gif-container">
-                <img class="pet-gif" src="" alt="Dog" />
-            </div>
-        `,
-        css: () => `
-            .my-pet-dog .pet-gif-container {
-                position: relative;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .my-pet-dog .pet-gif {
-                width: 60px;
-                height: 60px;
-                object-fit: contain;
-                animation: pet-walk 0.6s ease-in-out infinite;
-                image-rendering: pixelated;
-                image-rendering: -moz-crisp-edges;
-                image-rendering: crisp-edges;
-            }
-
-            .my-pet-dog:hover .pet-gif {
-                animation: pet-hover 0.5s ease-in-out infinite;
-            }
-        `
-    },
 
     // Example: How to add a new pet
     bird: {
