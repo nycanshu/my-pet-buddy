@@ -2,6 +2,9 @@
 
 A delightful Chrome extension that brings adorable animated pets to your browser! Choose from cats, dogs, and other cute animals that parade along your screen, creating a fun and engaging browsing experience for pet lovers and animal enthusiasts.
 
+<img width="1920" height="960" alt="file cover - 1" src="https://github.com/user-attachments/assets/425ded76-d3e0-4555-bb9f-22830ec0ebd6" />
+
+
 ## ✨ Features
 
 - **🎨 Multiple Pet Types**: Choose from cats, dogs, birds, rabbits, and more
