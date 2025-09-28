@@ -1,0 +1,2 @@
+# Ensure symbolic links are preserved
+docs/pets/* linguist-generated=false
