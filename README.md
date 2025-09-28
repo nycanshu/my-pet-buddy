@@ -64,6 +64,22 @@ A delightful Chrome extension that brings adorable animated pets to your browser
 - **Chromium-based**: Edge, Brave, Opera, etc.
 - **Firefox**: Not supported (uses Chrome-specific APIs)
 
+## 🤝 Contributing
+
+We welcome contributions to My Pet Buddy! Whether you want to add new pets, fix bugs, or improve features, your help is appreciated.
+
+### 🐾 Adding New Pets
+
+Want to add your favorite pet? Here's how:
+
+1. **Add PNG images** to the `pets/` folder
+2. **Follow naming convention**: `<pet-group>-<count>.png` (e.g., `cat-7.png`)
+3. **Ensure transparent background** for consistency
+4. **Test locally** before submitting
+5. **Create a Pull Request** with your changes
+
+### 📋 Contribution Guidelines
+see our [CONTRIBUTING.md](contribution/CONTRIBUTING.md) file.
 
 ## 📄 License
 
