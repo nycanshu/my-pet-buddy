@@ -27,6 +27,8 @@ jobs:
     - name: Copy pets folder to docs
       run: |
         cp -r pets/ docs/pets/
+        echo "Pets folder copied successfully"
+        ls -la docs/pets/ | head -10
         
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
