@@ -83,6 +83,15 @@
             font-weight: bold;
             color: #667eea;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -143,6 +152,16 @@
             animation: fadeInUp 1s ease-out;
             position: relative;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .hero h1 img {
+            height: 4rem;
+            width: auto;
+            object-fit: contain;
         }
 
         .hero p {
@@ -351,10 +370,10 @@
 
         .pets-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
-            max-width: 800px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -602,7 +621,10 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav container">
-            <a href="#" class="logo">🐾 My Pet Buddy</a>
+            <a href="#" class="logo">
+                <img src="logo.png" alt="My Pet Buddy Logo">
+                My Pet Buddy
+            </a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pets">Pets</a></li>
@@ -615,7 +637,10 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>🐾 My Pet Buddy</h1>
+            <h1>
+                <img src="logo.png" alt="My Pet Buddy Logo">
+                My Pet Buddy
+            </h1>
             <p>Bring joy to your browsing with adorable animated pets!</p>
             <div class="cta-buttons">
                 <a href="#install" class="btn btn-primary">Get Started</a>
@@ -671,17 +696,27 @@
                 <div class="pet-card">
                     <img src="pets/cat-1.png" alt="Adorable Cat" class="pet-image" onerror="this.style.display='none'">
                     <h3>Whiskers</h3>
-                    <p>Playful & Curious</p>
+                    <p>Playful & Curious Cat</p>
                 </div>
                 <div class="pet-card">
-                    <img src="pets/cat-2.png" alt="Cute Cat" class="pet-image" onerror="this.style.display='none'">
-                    <h3>Mittens</h3>
-                    <p>Sweet & Gentle</p>
+                    <img src="pets/dog-1.png" alt="Loyal Dog" class="pet-image" onerror="this.style.display='none'">
+                    <h3>Buddy</h3>
+                    <p>Loyal & Energetic Dog</p>
                 </div>
                 <div class="pet-card">
-                    <img src="pets/cat-3.png" alt="Lovely Cat" class="pet-image" onerror="this.style.display='none'">
-                    <h3>Shadow</h3>
-                    <p>Mysterious & Elegant</p>
+                    <img src="pets/bird-1.png" alt="Colorful Bird" class="pet-image" onerror="this.style.display='none'">
+                    <h3>Chirpy</h3>
+                    <p>Colorful & Melodious Bird</p>
+                </div>
+                <div class="pet-card">
+                    <img src="pets/hamster-1.png" alt="Cute Hamster" class="pet-image" onerror="this.style.display='none'">
+                    <h3>Nibbles</h3>
+                    <p>Tiny & Adorable Hamster</p>
+                </div>
+                <div class="pet-card">
+                    <img src="pets/rabbit-1.png" alt="Soft Rabbit" class="pet-image" onerror="this.style.display='none'">
+                    <h3>Fluffy</h3>
+                    <p>Soft & Gentle Rabbit</p>
                 </div>
             </div>
             
