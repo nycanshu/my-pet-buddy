@@ -2,6 +2,10 @@
 
 A delightful Chrome extension that brings adorable animated pets to your browser! Choose from cats, dogs, and other cute animals that parade along your screen, creating a fun and engaging browsing experience for pet lovers and animal enthusiasts.
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-5.0%20⭐-green?style=for-the-badge&logo=google-chrome)](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+[![Version](https://img.shields.io/badge/Version-1.0-blue?style=for-the-badge)](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://github.com/nycanshu/my-pet-buddy/blob/main/LICENSE)
+
 <img width="1920" height="960" alt="file cover - 1" src="https://github.com/user-attachments/assets/425ded76-d3e0-4555-bb9f-22830ec0ebd6" />
 
 
@@ -18,37 +22,49 @@ A delightful Chrome extension that brings adorable animated pets to your browser
 
 ## 🚀 Quick Start Guide
 
-### Loading the Extension Locally
+### 🛒 Install from Chrome Web Store (Recommended)
 
-1. **Download/Clone the Extension**:
-   ```bash
-   git clone https://github.com/nycanshu/my-pet-buddy.git
-   cd my-pet-buddy
-   ```
+1. **Visit Chrome Web Store**:
+   - Click the badge above or visit: [Chrome Web Store](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+   - Click "Add to Chrome" button
 
-2. **Open Chrome Extensions Page**:
-   - Navigate to `chrome://extensions/`
-   - Enable "Developer mode" (toggle in top-right corner)
+2. **Confirm Installation**:
+   - Review permissions and click "Add extension"
+   - The extension will be automatically installed and enabled
 
-3. **Load the Extension**:
-   - Click "Load unpacked"
-   - Select the `my-pet-buddy` folder containing all extension files
-   - The extension should appear in your extensions list with your custom icon
-
-4. **Test the Extension**:
-   - Click the "My Pet Buddy" icon in the browser toolbar
+3. **Start Using**:
+   - Click the "My Pet Buddy" icon in your browser toolbar
    - Toggle the extension ON/OFF using the switch at the top
    - Select your preferred pet position (Bottom/Middle/Top)
    - Choose your pet companion from the gallery
    - Navigate to any webpage to see your pets parading!
 
+### 🔧 For Developers (Local Installation)
+
+If you want to contribute or test locally:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/nycanshu/my-pet-buddy.git
+   cd my-pet-buddy
+   ```
+
+2. **Load in Chrome**:
+   - Navigate to `chrome://extensions/`
+   - Enable "Developer mode" (toggle in top-right corner)
+   - Click "Load unpacked" and select the project folder
+
+3. **Test the Extension**:
+   - Follow the same usage steps as above
+
 ## 🎮 How to Use
 
-1. **Enable the Extension**: Toggle the switch in the popup to activate pets
-2. **Choose Position**: Select where you want pets to appear (Bottom/Middle/Top)
-3. **Select Your Pet**: Click on any pet from the gallery to choose your companion
-4. **Enjoy**: Navigate to any website and watch your pet parade along the screen!
-5. **Interact**: Hover over your pet to see it pop and play
+1. **Install**: Get the extension from [Chrome Web Store](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+2. **Enable**: Toggle the switch in the popup to activate pets
+3. **Choose Position**: Select where you want pets to appear (Bottom/Middle/Top)
+4. **Select Your Pet**: Click on any pet from the gallery to choose your companion
+5. **Enjoy**: Navigate to any website and watch your pet parade along the screen!
+6. **Interact**: Hover over your pet to see it pop and play
 
 ## 🐛 Troubleshooting
 
@@ -60,23 +76,10 @@ A delightful Chrome extension that brings adorable animated pets to your browser
 
 ## 🌐 Browser Compatibility
 
-- **Chrome**: 88+ (Manifest V3 support)
-- **Chromium-based**: Edge, Brave, Opera, etc.
+- **Chrome**: 88+ (Manifest V3 support) - [Install from Chrome Web Store](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+- **Chromium-based**: Edge, Brave, Opera, etc. (via Chrome Web Store)
 - **Firefox**: Not supported (uses Chrome-specific APIs)
 
-## 🤝 Contributing
-
-We welcome contributions to My Pet Buddy! Whether you want to add new pets, fix bugs, or improve features, your help is appreciated.
-
-### 🐾 Adding New Pets
-
-Want to add your favorite pet? Here's how:
-
-1. **Add PNG images** to the `pets/` folder
-2. **Follow naming convention**: `<pet-group>-<count>.png` (e.g., `cat-7.png`)
-3. **Ensure transparent background** for consistency
-4. **Test locally** before submitting
-5. **Create a Pull Request** with your changes
 
 ### 📋 Contribution Guidelines
 see our [CONTRIBUTING.md](contribution/CONTRIBUTING.md) file.
@@ -86,6 +89,10 @@ see our [CONTRIBUTING.md](contribution/CONTRIBUTING.md) file.
 This project is open source and available under the MIT License.
 
 ---
+
+## 🎉 Get Started Now!
+
+[![Install from Chrome Web Store](https://img.shields.io/badge/Install%20from-Chrome%20Web%20Store-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
 
 **Made with ❤️ for pet lovers and animal enthusiasts!**
 
