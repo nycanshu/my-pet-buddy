@@ -1,0 +1,57 @@
+My Pet Buddy - Virtual Pet Companion
+
+
+Add adorable animated pets to your browser! Choose from cats, dogs, and other cute animals that parade along your screen.
+
+
+Transform your browsing experience with My Pet Buddy! This delightful extension brings joy to your daily web surfing by adding adorable animated pets that parade along your browser edge.
+
+🐾 FEATURES:
+• Choose from 30+ adorable pets including cats, dogs, birds, hamsters, and rabbits
+• Smooth, delightful animations with hover effects
+• Customizable pet positioning (top, middle, or bottom of screen)
+• Lightweight and optimized for performance
+• Easy one-click setup and customization
+• Perfect for pet lovers and animal enthusiasts
+
+🎨 HOW IT WORKS:
+Simply install the extension, select your favorite pet from the popup menu, and watch as your new companion appears on any website you visit. The pets are designed to be non-intrusive and won't interfere with your browsing experience.
+
+💝 PERFECT FOR:
+• Pet lovers who miss their furry friends
+• Anyone who wants to add joy to their browsing
+• People who love cute animals and animations
+• Users looking for a fun, lightweight browser enhancement
+
+The extension is completely free, requires minimal permissions, and works on all websites. Your virtual pet companion is just one click away!
+
+
+
+Choose: Productivity or Fun
+
+
+Storage Permission:
+The extension uses storage to remember the user's selected pet and their preferences (like pet position on screen). This ensures their chosen pet companion persists across browser sessions and provides a personalized experience.
+
+ActiveTab Permission:
+This permission allows the extension to inject the pet animation content script into the current tab when the user activates their pet. It's necessary for the pet to appear and function properly on web pages.
+
+Content Scripts on All URLs:
+The extension needs to inject pet animations on all websites to provide a consistent experience. The content scripts only add visual pet elements and don't collect any user data or interfere with website functionality.
+
+
+7. Additional Questions & Perfect Answers
+
+Q: Does your extension collect user data?
+
+No, My Pet Buddy does not collect any user data. The extension only stores the user's pet selection and position preferences locally on their device using browser storage. No personal information is transmitted or stored externally.
+
+Q: How does your extension enhance user experience?
+My Pet Buddy enhances the browsing experience by adding delightful animated pet companions that provide emotional comfort and joy. The pets are designed to be non-intrusive while bringing personality and warmth to any website the user visits.
+
+Q: What makes your extension unique?
+My Pet Buddy offers a wide variety of 30+ adorable pets with smooth animations, customizable positioning, and a lightweight design. Unlike other pet extensions, it focuses on high-quality animations and user experience without compromising browser performance.
+
+6. Support Information
+Support URL: https://github.com/nycanshu/my-pet-buddy/issues
+Homepage URL: https://nycanshu.github.io/my-pet-buddy
