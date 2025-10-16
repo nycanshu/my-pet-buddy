@@ -1,8 +1,9 @@
 # My Pet Buddy - Virtual Pet Companion 🐱🐶
 
-A delightful Chrome extension that brings adorable animated pets to your browser! Choose from cats, dogs, and other cute animals that parade along your screen, creating a fun and engaging browsing experience for pet lovers and animal enthusiasts.
+A delightful browser extension that brings adorable animated pets to your browser! Choose from cats, dogs, and other cute animals that parade along your screen, creating a fun and engaging browsing experience for pet lovers and animal enthusiasts.
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-5.0%20⭐-green?style=for-the-badge&logo=google-chrome)](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+[![Microsoft Edge](https://img.shields.io/badge/Microsoft%20Edge-Add--ons-blue?style=for-the-badge&logo=microsoft-edge)](https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad)
 [![Version](https://img.shields.io/badge/Version-1.0-blue?style=for-the-badge)](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://github.com/nycanshu/my-pet-buddy/blob/main/LICENSE)
 
@@ -22,11 +23,17 @@ A delightful Chrome extension that brings adorable animated pets to your browser
 
 ## 🚀 Quick Start Guide
 
-### 🛒 Install from Chrome Web Store (Recommended)
+### 🛒 Install from Browser Stores (Recommended)
 
+**Chrome Users:**
 1. **Visit Chrome Web Store**:
-   - Click the badge above or visit: [Chrome Web Store](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+   - Click the Chrome badge above or visit: [Chrome Web Store](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
    - Click "Add to Chrome" button
+
+**Microsoft Edge Users:**
+1. **Visit Microsoft Edge Add-ons**:
+   - Click the Edge badge above or visit: [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad)
+   - Click "Get" button
 
 2. **Confirm Installation**:
    - Review permissions and click "Add extension"
@@ -49,8 +56,9 @@ If you want to contribute or test locally:
    cd my-pet-buddy
    ```
 
-2. **Load in Chrome**:
-   - Navigate to `chrome://extensions/`
+2. **Load in Browser**:
+   - **Chrome**: Navigate to `chrome://extensions/`
+   - **Edge**: Navigate to `edge://extensions/`
    - Enable "Developer mode" (toggle in top-right corner)
    - Click "Load unpacked" and select the project folder
 
@@ -59,7 +67,7 @@ If you want to contribute or test locally:
 
 ## 🎮 How to Use
 
-1. **Install**: Get the extension from [Chrome Web Store](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+1. **Install**: Get the extension from [Chrome Web Store](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne) or [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad)
 2. **Enable**: Toggle the switch in the popup to activate pets
 3. **Choose Position**: Select where you want pets to appear (Bottom/Middle/Top)
 4. **Select Your Pet**: Click on any pet from the gallery to choose your companion
@@ -77,7 +85,8 @@ If you want to contribute or test locally:
 ## 🌐 Browser Compatibility
 
 - **Chrome**: 88+ (Manifest V3 support) - [Install from Chrome Web Store](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
-- **Chromium-based**: Edge, Brave, Opera, etc. (via Chrome Web Store)
+- **Microsoft Edge**: 88+ (Manifest V3 support) - [Install from Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad)
+- **Other Chromium-based**: Brave, Opera, etc. (via Chrome Web Store)
 - **Firefox**: Not supported (uses Chrome-specific APIs)
 
 
@@ -93,6 +102,7 @@ This project is open source and available under the MIT License.
 ## 🎉 Get Started Now!
 
 [![Install from Chrome Web Store](https://img.shields.io/badge/Install%20from-Chrome%20Web%20Store-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
+[![Install from Microsoft Edge](https://img.shields.io/badge/Install%20from-Microsoft%20Edge-0078D4?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad)
 
 **Made with ❤️ for pet lovers and animal enthusiasts!**
 
