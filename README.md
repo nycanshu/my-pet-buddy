@@ -10,7 +10,7 @@ A delightful browser extension that brings adorable animated pets to your browse
 <img width="1920" height="960" alt="file cover - 1" src="https://github.com/user-attachments/assets/425ded76-d3e0-4555-bb9f-22830ec0ebd6" />
 
 <video width="1920" height="960" autoplay loop muted playsinline>
-  <source src="ads/mypetbyddy.mp4" type="video/mp4">
+  <source src="https://raw.githubusercontent.com/nycanshu/my-pet-buddy/main/ads/mypetbyddy.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
