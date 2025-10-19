@@ -21,6 +21,8 @@ Be as specific as possible.
 ## 📱 Environment (if applicable)
 **Browser & Version:**
 - [ ] Chrome (version: ___)
+- [ ] Firefox (version: ___)
+- [ ] Safari (version: ___)
 - [ ] Microsoft Edge (version: ___)
 - [ ] Other: ___
 
