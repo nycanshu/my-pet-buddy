@@ -256,6 +256,133 @@
             transform: translateY(-3px);
         }
 
+        /* Video Showcase Section */
+        .video-showcase {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="paws" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="25" cy="25" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23paws)"/></svg>');
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .video-container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .video-description {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .promo-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .video-wrapper:hover .promo-video {
+            transform: scale(1.02);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .video-wrapper:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #667eea;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .play-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .video-cta {
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .video-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .video-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .video-buttons .btn {
+            font-size: 1.1rem;
+            padding: 16px 32px;
+        }
+
         /* Features Section */
         .features {
             padding: 80px 0;
@@ -601,6 +728,58 @@
             .nav-links {
                 display: none;
             }
+
+            .video-title {
+                font-size: 2.2rem;
+            }
+
+            .video-description {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .video-wrapper {
+                margin: 0 auto 2rem;
+                border-radius: 15px;
+            }
+
+            .promo-video {
+                border-radius: 15px;
+            }
+
+            .video-overlay {
+                border-radius: 15px;
+            }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .video-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .video-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-title {
+                font-size: 1.8rem;
+            }
+
+            .video-description {
+                font-size: 1rem;
+            }
+
+            .video-cta p {
+                font-size: 1rem;
+            }
         }
 
         /* Animations */
@@ -655,6 +834,34 @@
                 <a href="https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne" target="_blank" class="btn btn-primary">Install from Chrome Store</a>
                 <a href="https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad" target="_blank" class="btn btn-primary">Install from Edge Store</a>
                 <a href="https://github.com/nycanshu/my-pet-buddy" target="_blank" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Video Section -->
+    <section class="video-showcase">
+        <div class="container">
+            <div class="video-container">
+                <h2 class="video-title">🎬 See My Pet Buddy in Action!</h2>
+                <p class="video-description">Watch how adorable pets parade along your browser and bring joy to your browsing experience!</p>
+                <div class="video-wrapper">
+                    <video class="promo-video" autoplay loop muted playsinline>
+                        <source src="../ads/mypetbyddy.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-overlay">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-cta">
+                    <p>Ready to bring these adorable companions to your browser?</p>
+                    <div class="video-buttons">
+                        <a href="https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne" target="_blank" class="btn btn-primary">🚀 Install from Chrome Store</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad" target="_blank" class="btn btn-primary">🚀 Install from Edge Store</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -891,6 +1098,47 @@
                 }, 600);
             });
         });
+
+        // Video interaction functionality
+        const video = document.querySelector('.promo-video');
+        const playButton = document.querySelector('.play-button');
+        const videoOverlay = document.querySelector('.video-overlay');
+
+        if (video && playButton && videoOverlay) {
+            // Toggle video play/pause on click
+            playButton.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    videoOverlay.style.opacity = '0';
+                } else {
+                    video.pause();
+                    videoOverlay.style.opacity = '1';
+                }
+            });
+
+            // Show overlay when video is paused
+            video.addEventListener('pause', () => {
+                videoOverlay.style.opacity = '1';
+            });
+
+            // Hide overlay when video is playing
+            video.addEventListener('play', () => {
+                videoOverlay.style.opacity = '0';
+            });
+
+            // Pause video when it's not in viewport for better performance
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            videoObserver.observe(video);
+        }
 
         // Add ripple effect CSS
         const style = document.createElement('style');
