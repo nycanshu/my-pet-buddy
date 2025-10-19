@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🐾 My Pet Buddy Community
+    url: https://github.com/nycanshu/my-pet-buddy/discussions
+    about: Ask questions, share ideas, and connect with other pet lovers!
+  - name: 📧 Email Support
+    url: mailto:hkg43700@gmail.com
+    about: Contact us directly for urgent issues or private matters
+  - name: 📖 Documentation
+    url: https://github.com/nycanshu/my-pet-buddy#readme
+    about: Check our README for installation and usage instructions
