@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Pet Buddy - Virtual Pet Companion</title>
-    <meta name="description" content="Bring joy to your browsing with adorable animated pets! Choose your favorite cat, dog, or other cute animal companion to parade along your browser edge.">
-    <meta name="keywords" content="pet extension, virtual pet, browser pet, cat extension, dog extension, animal companion, cute pets, animated pets">
+    <meta name="description" content="Adorable animated pets for your browser! Click to pet them, enjoy motivational quotes, toggle dark mode, and choose Parade / Left / Right motion modes — now in v1.1.">
+    <meta name="keywords" content="pet extension, virtual pet, browser pet, cat extension, dog extension, animal companion, cute pets, animated pets, interactive pet, dark mode extension, motivational messages, click to pet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -118,6 +118,35 @@
 
         .nav-links a:hover {
             color: #667eea;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid #e9ecef;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #667eea;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-1px);
+            border-color: #667eea;
         }
 
         /* Hero Section */
@@ -803,6 +832,226 @@
         .pet-card:nth-child(4) {
             animation-delay: 1.5s;
         }
+
+        /* What's New in v1.1 Section — uses the brand purple-to-pink palette */
+        .whats-new {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whats-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="sparkles" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.25)"/><circle cx="30" cy="25" r="1" fill="rgba(255,255,255,0.2)"/><circle cx="20" cy="35" r="1.2" fill="rgba(255,255,255,0.22)"/></pattern></defs><rect width="100" height="100" fill="url(%23sparkles)"/></svg>');
+            opacity: 0.6;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .whats-new-header {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 3rem;
+        }
+
+        .whats-new-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .whats-new-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .whats-new-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .whats-new-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .whats-new-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem 1.5rem;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .whats-new-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .whats-new-card .feature-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .whats-new-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .whats-new-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .whats-new-title {
+                font-size: 1.9rem;
+            }
+            .whats-new-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== Dark mode ===== */
+        /* Applied when <body> has the .theme-dark class. Hero / video-showcase /
+           pet-showcase / whats-new / footer keep their colored gradients in both
+           themes — only the light-background sections flip. */
+
+        body.theme-dark {
+            background: #0d1117;
+            color: #e6e6e6;
+        }
+
+        /* Hero keeps its brand purple in dark mode */
+        body.theme-dark .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Header */
+        body.theme-dark .header {
+            background: rgba(22, 27, 34, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        body.theme-dark .header.scrolled {
+            background: rgba(22, 27, 34, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        body.theme-dark .logo {
+            color: #8b9eff;
+        }
+
+        body.theme-dark .nav-links a {
+            color: #e6e6e6;
+        }
+
+        body.theme-dark .nav-links a:hover {
+            color: #8b9eff;
+        }
+
+        body.theme-dark .theme-toggle-btn {
+            border-color: #2d333b;
+            color: #ffb74d;
+        }
+
+        body.theme-dark .theme-toggle-btn:hover {
+            background: #1e242c;
+            border-color: #ffb74d;
+        }
+
+        /* Features section */
+        body.theme-dark .features {
+            background: #0d1117;
+        }
+
+        body.theme-dark .features::before {
+            background: linear-gradient(90deg, transparent, #2d333b, transparent);
+        }
+
+        body.theme-dark .section-title {
+            color: #f0f0f0;
+        }
+
+        body.theme-dark .feature-card {
+            background: linear-gradient(135deg, #161b22, #1c2129);
+            border-color: #2d333b;
+        }
+
+        body.theme-dark .feature-card h3 {
+            color: #f0f0f0;
+        }
+
+        body.theme-dark .feature-card p {
+            color: #b0b8c0;
+        }
+
+        /* Installation section */
+        body.theme-dark .installation {
+            background: #0d1117;
+        }
+
+        body.theme-dark .step {
+            background: #161b22;
+            border-color: #2d333b;
+        }
+
+        body.theme-dark .step h3 {
+            color: #f0f0f0;
+        }
+
+        body.theme-dark .step p {
+            color: #b0b8c0;
+        }
+
+        /* What's New section — adjust the cards (which are on a colored gradient) */
+        body.theme-dark .whats-new-badge {
+            background: rgba(22, 27, 34, 0.95);
+            color: #8b9eff;
+        }
+
+        body.theme-dark .whats-new-card {
+            background: rgba(30, 36, 44, 0.95);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.theme-dark .whats-new-card h3 {
+            color: #f0f0f0;
+        }
+
+        body.theme-dark .whats-new-card p {
+            color: #b0b8c0;
+        }
     </style>
 </head>
 <body>
@@ -813,12 +1062,17 @@
                 <img src="logo.png" alt="My Pet Buddy Logo">
                 My Pet Buddy
             </a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pets">Pets</a></li>
-                <li><a href="#install">Install</a></li>
-                <li><a href="https://github.com/nycanshu/my-pet-buddy" target="_blank">GitHub</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pets">Pets</a></li>
+                    <li><a href="#install">Install</a></li>
+                    <li><a href="https://github.com/nycanshu/my-pet-buddy" target="_blank">GitHub</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle-btn" title="Switch to dark mode" type="button" aria-label="Toggle dark mode">
+                    <i id="theme-toggle-icon" class="fas fa-moon"></i>
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -829,11 +1083,44 @@
                 <img src="logo.png" alt="My Pet Buddy Logo">
                 My Pet Buddy
             </h1>
-            <p>Bring joy to your browsing with adorable animated pets! Now available on Chrome Web Store and Microsoft Edge Add-ons.</p>
+            <p>Adorable animated pets for your browser! Click to pet them, enjoy motivational quotes, and toggle dark mode &mdash; v1.1 is here.</p>
             <div class="cta-buttons">
                 <a href="https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne" target="_blank" class="btn btn-primary">Install from Chrome Store</a>
                 <a href="https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad" target="_blank" class="btn btn-primary">Install from Edge Store</a>
                 <a href="https://github.com/nycanshu/my-pet-buddy" target="_blank" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's New in v1.1 Section -->
+    <section class="whats-new">
+        <div class="container">
+            <div class="whats-new-header">
+                <div class="whats-new-badge">🆕 Just Released — v1.1</div>
+                <h2 class="whats-new-title">What's New in v1.1</h2>
+                <p class="whats-new-subtitle">More interactive, more customizable, more fun.</p>
+            </div>
+            <div class="whats-new-grid">
+                <div class="whats-new-card">
+                    <div class="feature-icon">🖱️</div>
+                    <h3>Click to Pet</h3>
+                    <p>Tap your buddy to send floating hearts flying across the screen!</p>
+                </div>
+                <div class="whats-new-card">
+                    <div class="feature-icon">💭</div>
+                    <h3>Motivational Quotes</h3>
+                    <p>Your pet shares friendly thought bubbles to brighten your day.</p>
+                </div>
+                <div class="whats-new-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Dark Mode</h3>
+                    <p>Auto-detects your system theme, or toggle it manually in the popup.</p>
+                </div>
+                <div class="whats-new-card">
+                    <div class="feature-icon">↔️</div>
+                    <h3>Motion Modes</h3>
+                    <p>Choose Parade (walking), Left, or Right (anchored) — your call.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -883,8 +1170,8 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📍</div>
-                    <h3>Perfect Positioning</h3>
-                    <p>Place your pet exactly where you want - top, middle, or bottom of your screen. It's your choice!</p>
+                    <h3>Flexible Positioning</h3>
+                    <p>Place your pet top, middle, or bottom — and choose Parade, Left, or Right motion mode to fit your workflow.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💝</div>
@@ -982,7 +1269,7 @@
                 <div style="margin-top: 1rem;">
                     <img src="https://img.shields.io/badge/Chrome%20Web%20Store-5.0%20⭐-green?style=for-the-badge&logo=google-chrome" alt="Chrome Web Store Rating" style="height: 28px; margin-right: 10px;">
                     <img src="https://img.shields.io/badge/Microsoft%20Edge-Add--ons-blue?style=for-the-badge&logo=microsoft-edge" alt="Microsoft Edge Add-ons" style="height: 28px; margin-right: 10px;">
-                    <img src="https://img.shields.io/badge/Version-1.0-blue?style=for-the-badge" alt="Version 1.0" style="height: 28px;">
+                    <img src="https://img.shields.io/badge/Version-1.1-blue?style=for-the-badge" alt="Version 1.1" style="height: 28px;">
                 </div>
             </div>
         </div>
@@ -1151,7 +1438,7 @@
                 animation: ripple-animation 0.6s linear;
                 pointer-events: none;
             }
-            
+
             @keyframes ripple-animation {
                 to {
                     transform: scale(4);
@@ -1160,6 +1447,46 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Theme toggle — dark/light mode with localStorage persistence
+        (function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleIcon = document.getElementById('theme-toggle-icon');
+            if (!themeToggleBtn || !themeToggleIcon) return;
+
+            function applyTheme(theme) {
+                document.body.classList.remove('theme-light', 'theme-dark');
+                document.body.classList.add('theme-' + theme);
+                themeToggleIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                themeToggleBtn.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+            }
+
+            // Initial theme: localStorage wins, else OS preference, else light
+            let initialTheme = 'light';
+            try {
+                const stored = localStorage.getItem('mpb-theme');
+                if (stored === 'dark' || stored === 'light') {
+                    initialTheme = stored;
+                } else if (globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches) {
+                    initialTheme = 'dark';
+                }
+            } catch {
+                // localStorage blocked (private mode / cookies off) — keep default
+                initialTheme = 'light';
+            }
+            applyTheme(initialTheme);
+
+            themeToggleBtn.addEventListener('click', function() {
+                const isDark = document.body.classList.contains('theme-dark');
+                const next = isDark ? 'light' : 'dark';
+                applyTheme(next);
+                try {
+                    localStorage.setItem('mpb-theme', next);
+                } catch {
+                    // localStorage blocked — theme still applied for this session
+                }
+            });
+        })();
     </script>
 </body>
 </html>
