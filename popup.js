@@ -10,11 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get DOM elements
     const toggle = document.getElementById('my-pet-toggle');
     const catGrid = document.getElementById('my-pet-cat-grid');
-    const positionButtons = document.querySelectorAll('.my-pet-position-btn');
+    const positionButtons = document.querySelectorAll('.my-pet-position-btn:not(.my-pet-motion-btn)');
+    const motionButtons = document.querySelectorAll('.my-pet-motion-btn');
     const websiteLink = document.getElementById('website-link');
-    
+
     let selectedCat = 'cat-1'; // Default selection
     let selectedPosition = 0; // Default position (bottom)
+    let selectedMotion = 'parade'; // Default motion mode (left | right | parade)
     let availablePets = []; // Will store detected pets
 
     // Set website link (will be updated when GitHub Pages is enabled)
@@ -176,6 +178,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Add click handlers for motion mode buttons
+    motionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            motionButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            selectedMotion = this.dataset.motion;
+            saveSelections();
+        });
+    });
+
     // Toggle handler
     toggle.addEventListener('click', function() {
         this.classList.toggle('active');
@@ -184,11 +196,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load saved pet selections from storage
     function loadSavedSelections() {
-        chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-selected-cat'], function(result) {
+        chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-selected-cat', 'my-pet-motion-mode'], function(result) {
             const selections = result['my-pet-selections'] || [];
             const isEnabled = result['my-pet-enabled'] || false;
             const yPosition = result['my-pet-y-position'] || 0;
             const savedCat = result['my-pet-selected-cat'] || 'cat-1';
+            const savedMotion = result['my-pet-motion-mode'] || 'parade';
 
             // Set toggle state
             if (isEnabled && selections.includes('cat')) {
@@ -204,6 +217,16 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedPosition = yPosition;
             positionButtons.forEach(button => {
                 if (parseInt(button.dataset.position) === yPosition) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            // Set motion mode
+            selectedMotion = savedMotion;
+            motionButtons.forEach(button => {
+                if (button.dataset.motion === savedMotion) {
                     button.classList.add('active');
                 } else {
                     button.classList.remove('active');
@@ -229,18 +252,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const isEnabled = toggle.classList.contains('active');
         const selections = isEnabled ? ['cat'] : [];
 
-        // Save to storage
+        // Save to storage. Popup stays open so the user can keep tweaking;
+        // the content script's storage listener picks up changes live.
         chrome.storage.sync.set({
             'my-pet-selections': selections,
             'my-pet-enabled': isEnabled,
             'my-pet-y-position': selectedPosition,
             'my-pet-speed': DEFAULT_SPEED,
-            'my-pet-selected-cat': selectedCat
-        }, function() {
-            // Close popup after short delay
-            setTimeout(() => {
-                window.close();
-            }, 300);
+            'my-pet-selected-cat': selectedCat,
+            'my-pet-motion-mode': selectedMotion
         });
     }
 

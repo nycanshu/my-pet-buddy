@@ -11,20 +11,21 @@
     window.myPetBuddyLoaded = true;
 
     // Get pet selections and enabled status from storage
-    chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-speed', 'my-pet-selected-cat'], function(result) {
+    chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-speed', 'my-pet-selected-cat', 'my-pet-motion-mode'], function(result) {
         const selections = result['my-pet-selections'] || [];
         const isEnabled = result['my-pet-enabled'] || false;
         const yPosition = result['my-pet-y-position'] || 0;
         const speed = result['my-pet-speed'] || 10;
         const selectedCat = result['my-pet-selected-cat'] || 'cat-1';
+        const motionMode = result['my-pet-motion-mode'] || 'parade';
 
         if (isEnabled && selections.length > 0) {
-            createPetParade(selections, yPosition, speed, selectedCat);
+            createPetParade(selections, yPosition, speed, selectedCat, motionMode);
         }
     });
 
     // Create the pet parade container and pets
-    function createPetParade(selections, yPosition, speed, selectedCat) {
+    function createPetParade(selections, yPosition, speed, selectedCat, motionMode) {
         // Remove existing pets if any
         const existingContainer = document.getElementById('my-pet-container');
         if (existingContainer) {
@@ -47,7 +48,7 @@
 
         // Create pets based on selections
         selections.forEach((petType, index) => {
-            const pet = createPet(petType, index, speed, selectedCat);
+            const pet = createPet(petType, index, speed, selectedCat, motionMode);
             container.appendChild(pet);
         });
 
@@ -58,13 +59,15 @@
         injectPetStyles(speed);
 
         // Hover interactions are now handled in startPositionTracking
-        
-        // Start position tracking
-        startPositionTracking(container, speed);
+
+        // Start position tracking (parade only — static modes have nothing to track)
+        if (motionMode === 'parade') {
+            startPositionTracking(container, speed);
+        }
     }
 
     // Create individual pet element
-    function createPet(petType, index, speed, selectedCat) {
+    function createPet(petType, index, speed, selectedCat, motionMode) {
         const pet = document.createElement('div');
         pet.id = `my-pet-${petType}`;
         pet.className = `my-pet-animal my-pet-${petType}`;
@@ -91,14 +94,24 @@
         }
         
         pet.appendChild(petContent);
-        
+
+        // Compute horizontal placement based on motion mode
+        let horizontalCSS;
+        if (motionMode === 'left') {
+            horizontalCSS = 'left: 10px;';
+        } else if (motionMode === 'right') {
+            horizontalCSS = 'right: 10px;';
+        } else {
+            horizontalCSS = 'left: -50px;'; // parade — animation will sweep this
+        }
+
         // Position and style
         pet.style.cssText = `
             position: absolute;
             width: 60px;
             height: 60px;
             bottom: ${index * 50}px;
-            left: -50px;
+            ${horizontalCSS}
             pointer-events: auto;
             cursor: pointer;
             user-select: none;
@@ -268,16 +281,17 @@
     // Listen for storage changes to update pets dynamically
     chrome.storage.onChanged.addListener(function(changes, namespace) {
         if (namespace === 'sync') {
-            if (changes['my-pet-selections'] || changes['my-pet-enabled'] || changes['my-pet-y-position'] || changes['my-pet-speed'] || changes['my-pet-selected-cat']) {
-                chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-speed', 'my-pet-selected-cat'], function(result) {
+            if (changes['my-pet-selections'] || changes['my-pet-enabled'] || changes['my-pet-y-position'] || changes['my-pet-speed'] || changes['my-pet-selected-cat'] || changes['my-pet-motion-mode']) {
+                chrome.storage.sync.get(['my-pet-selections', 'my-pet-enabled', 'my-pet-y-position', 'my-pet-speed', 'my-pet-selected-cat', 'my-pet-motion-mode'], function(result) {
                     const selections = result['my-pet-selections'] || [];
                     const isEnabled = result['my-pet-enabled'] || false;
                     const yPosition = result['my-pet-y-position'] || 0;
                     const speed = result['my-pet-speed'] || 10;
                     const selectedCat = result['my-pet-selected-cat'] || 'cat-1';
+                    const motionMode = result['my-pet-motion-mode'] || 'parade';
 
                     if (isEnabled && selections.length > 0) {
-                        createPetParade(selections, yPosition, speed, selectedCat);
+                        createPetParade(selections, yPosition, speed, selectedCat, motionMode);
                     } else {
                         // Remove pets if disabled
                         const container = document.getElementById('my-pet-container');
