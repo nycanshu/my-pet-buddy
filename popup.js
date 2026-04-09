@@ -13,6 +13,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const positionButtons = document.querySelectorAll('.my-pet-position-btn:not(.my-pet-motion-btn)');
     const motionButtons = document.querySelectorAll('.my-pet-motion-btn');
     const websiteLink = document.getElementById('website-link');
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
+
+    // Apply a theme to the popup body and update the icon to reflect the
+    // *next* state (moon = currently light, click to go dark; sun = vice versa)
+    function applyTheme(theme) {
+        document.body.classList.remove('theme-light', 'theme-dark');
+        document.body.classList.add(`theme-${theme}`);
+        themeToggleIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        themeToggleBtn.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+
+    // Initial theme: stored preference, else fall back to OS
+    chrome.storage.sync.get(['my-pet-theme'], function(result) {
+        const stored = result['my-pet-theme'];
+        if (stored === 'dark' || stored === 'light') {
+            applyTheme(stored);
+        } else {
+            const prefersDark = globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches;
+            applyTheme(prefersDark ? 'dark' : 'light');
+        }
+    });
+
+    themeToggleBtn.addEventListener('click', function() {
+        const isDark = document.body.classList.contains('theme-dark');
+        const next = isDark ? 'light' : 'dark';
+        applyTheme(next);
+        chrome.storage.sync.set({ 'my-pet-theme': next });
+    });
 
     let selectedCat = 'cat-1'; // Default selection
     let selectedPosition = 0; // Default position (bottom)

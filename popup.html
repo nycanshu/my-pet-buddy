@@ -80,6 +80,20 @@
             transform: translateY(-1px);
         }
 
+        button.my-pet-social-link.theme {
+            background: #fff3e0;
+            color: #bf360c;
+            border: 1px solid #ffcc80;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        button.my-pet-social-link.theme:hover {
+            background: #bf360c;
+            color: white;
+            transform: translateY(-1px);
+        }
+
         .my-pet-title {
             font-size: 20px;
             font-weight: 600;
@@ -405,6 +419,104 @@
         .my-pet-attribution-link i {
             font-size: 14px;
         }
+
+        /* Dark mode — toggled via the theme button in the header.
+           On first open, popup.js picks light/dark from the OS preference and
+           applies one of these classes; subsequent toggles persist to storage. */
+        body.theme-dark {
+            background: #181a1f;
+            color: #e6e6e6;
+        }
+
+        body.theme-dark .my-pet-header {
+            background: #22252b;
+            border-bottom-color: #2e323a;
+        }
+
+        body.theme-dark .my-pet-title {
+            color: #f0f0f0;
+        }
+
+        body.theme-dark .my-pet-toggle {
+            background: #3a3f48;
+        }
+
+        body.theme-dark .my-pet-social-link.github {
+            background: #2a2e36;
+            color: #e0e0e0;
+            border-color: #3a3f48;
+        }
+
+        body.theme-dark .my-pet-social-link.github:hover {
+            background: #f0f0f0;
+            color: #181a1f;
+        }
+
+        body.theme-dark .my-pet-social-link.website {
+            background: #1e2a3a;
+            color: #5aa9ff;
+            border-color: #2a3a4f;
+        }
+
+        body.theme-dark button.my-pet-social-link.theme {
+            background: #2a2418;
+            color: #ffb74d;
+            border-color: #4a3a20;
+        }
+
+        body.theme-dark button.my-pet-social-link.theme:hover {
+            background: #ffb74d;
+            color: #181a1f;
+        }
+
+        body.theme-dark .my-pet-position-control,
+        body.theme-dark .my-pet-cat-gallery {
+            background: #22252b;
+            border-color: #2e323a;
+        }
+
+        body.theme-dark .my-pet-position-title,
+        body.theme-dark .my-pet-gallery-title {
+            color: #f0f0f0;
+        }
+
+        body.theme-dark .my-pet-group-header {
+            color: #d0d0d0;
+            border-bottom-color: #2e323a;
+        }
+
+        body.theme-dark .my-pet-position-btn {
+            background: #2a2e36;
+            border-color: #3a3f48;
+            color: #c0c0c0;
+        }
+
+        body.theme-dark .my-pet-position-btn:hover {
+            background: #1e2a3a;
+            border-color: #5aa9ff;
+        }
+
+        body.theme-dark .my-pet-cat-item {
+            background: #2a2e36;
+        }
+
+        body.theme-dark .my-pet-cat-item:hover {
+            background: #34394a;
+            border-color: #5aa9ff;
+        }
+
+        body.theme-dark .my-pet-cat-name {
+            color: #b0b0b0;
+        }
+
+        body.theme-dark .my-pet-attribution {
+            background: #1e2026;
+            border-top-color: #2e323a;
+        }
+
+        body.theme-dark .my-pet-attribution-text {
+            color: #b0b0b0;
+        }
     </style>
 </head>
 <body>
@@ -421,6 +533,9 @@
                 <a href="#" id="website-link" target="_blank" class="my-pet-social-link website" title="Website">
                     <i class="fas fa-globe"></i>
                 </a>
+                <button id="theme-toggle" class="my-pet-social-link theme" title="Toggle dark mode" type="button">
+                    <i id="theme-toggle-icon" class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
         <div class="my-pet-toggle" id="my-pet-toggle">
