@@ -15,6 +15,9 @@ class SettingsStore extends EventEmitter {
   }
 
   set(key, value) {
+    // No-op if unchanged: avoids redundant writes and a storm of 'change'
+    // broadcasts when the settings UI re-saves every key on each interaction.
+    if (this.get(key) === value) return;
     this._backend.set(key, value);
     this.emit('change', { key, value });
   }

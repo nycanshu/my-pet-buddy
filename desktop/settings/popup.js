@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedSpecies = 'cat'; // Default species
     let selectedVariant = 1;     // Default variant
     let availablePets = [];      // Will store detected pets
+    let selectedPosition = 'bottom'; // bottom | middle | top
+    let selectedMotion = 'parade';   // parade | left | right
+    const positionControl = document.getElementById('position-control');
+    const motionControl = document.getElementById('motion-control');
 
     // Convenience: the currently selected pet id, e.g. "cat-1".
     function selectedPetId() {
@@ -58,11 +62,13 @@ document.addEventListener('DOMContentLoaded', function() {
         websiteLink.href = 'https://nycanshu.github.io/my-pet-buddy';
     }
 
-    // Update logo source to use the copied assets folder
+    // Header logo mirrors the selected pet — a colored PNG that reads well in
+    // both light and dark mode, and matches the menu-bar icon.
     const logoImg = document.querySelector('.my-pet-title img');
-    if (logoImg) {
-        logoImg.src = chrome.runtime.getURL('/logo.png');
+    function updateHeaderLogo() {
+        if (logoImg) logoImg.src = chrome.runtime.getURL(`pets/${selectedPetId()}.png`);
     }
+    updateHeaderLogo();
 
     // Pet types configuration - Add new pet types here
     const PET_TYPES = ['cat', 'dog', 'bird', 'rabbit', 'hamster'];
@@ -185,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const [species, variant] = this.dataset.cat.split('-');
                     selectedSpecies = species;
                     selectedVariant = parseInt(variant, 10) || 1;
+                    updateHeaderLogo();
                     saveSelections();
                 });
 
@@ -207,13 +214,37 @@ document.addEventListener('DOMContentLoaded', function() {
         saveSelections();
     });
 
+    // Segmented controls (Position + Motion): pick one, mark active, save.
+    function wireSegment(container, key, onPick) {
+        if (!container) return;
+        container.querySelectorAll('.my-pet-position-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                container.querySelectorAll('.my-pet-position-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                onPick(this.dataset[key]);
+            });
+        });
+    }
+    function applySegment(container, key, value) {
+        if (!container) return;
+        container.querySelectorAll('.my-pet-position-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset[key] === value);
+        });
+    }
+    wireSegment(positionControl, 'pos', function(v) { selectedPosition = v; saveSelections(); });
+    wireSegment(motionControl, 'motion', function(v) { selectedMotion = v; saveSelections(); });
+
     // Load saved selections from storage (v1 schema keys)
     function loadSavedSelections() {
-        chrome.storage.sync.get(['enabled', 'species', 'variant', 'motivationEnabled'], function(result) {
+        chrome.storage.sync.get(['enabled', 'species', 'variant', 'motivationEnabled', 'position', 'motionMode'], function(result) {
             const isEnabled = result['enabled'] || false;
             const species = result['species'] || 'cat';
             const variant = result['variant'] || 1;
             const motivationEnabled = result['motivationEnabled'] || false;
+            selectedPosition = result['position'] || 'bottom';
+            selectedMotion = result['motionMode'] || 'parade';
+            applySegment(positionControl, 'pos', selectedPosition);
+            applySegment(motionControl, 'motion', selectedMotion);
 
             // Set enable toggle state
             if (isEnabled) {
@@ -232,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Set selected pet (reconstruct id; applied when grid is rendered)
             selectedSpecies = species;
             selectedVariant = variant;
+            updateHeaderLogo();
             applySavedSelection();
         });
     }
@@ -260,7 +292,9 @@ document.addEventListener('DOMContentLoaded', function() {
             'enabled': isEnabled,
             'species': selectedSpecies,
             'variant': selectedVariant,
-            'motivationEnabled': motivationEnabled
+            'motivationEnabled': motivationEnabled,
+            'position': selectedPosition,
+            'motionMode': selectedMotion
         });
     }
 

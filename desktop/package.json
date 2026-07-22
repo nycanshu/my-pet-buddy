@@ -1,6 +1,6 @@
 {
   "name": "my-pet-buddy-desktop",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "My Pet Buddy — desktop pet that walks over all your apps.",
   "main": "main.js",
   "type": "commonjs",
@@ -11,7 +11,12 @@
     "test": "node --test 'test/*.test.js'",
     "dist": "npm run copy-assets && electron-builder",
     "dist:mac": "npm run copy-assets && electron-builder --mac --publish always",
-    "dist:win": "npm run copy-assets && electron-builder --win --publish always"
+    "dist:win": "npm run copy-assets && electron-builder --win --publish always",
+    "dist:all": "npm run copy-assets && electron-builder --mac --win --publish never",
+    "release": "npm run copy-assets && electron-builder --mac --win --publish always",
+    "bump:patch": "npm version patch --no-git-tag-version",
+    "bump:minor": "npm version minor --no-git-tag-version",
+    "bump:major": "npm version major --no-git-tag-version"
   },
   "author": "My Pet Buddy Team",
   "license": "MIT",
@@ -41,7 +46,8 @@
     "mac": {
       "target": [{ "target": "dmg", "arch": ["universal"] }],
       "category": "public.app-category.entertainment",
-      "icon": "build/icon.png"
+      "icon": "build/icon.png",
+      "artifactName": "MyPetBuddy-${version}-${arch}.dmg"
     },
     "win": {
       "target": [{ "target": "nsis", "arch": ["x64"] }],
@@ -50,7 +56,16 @@
     "nsis": {
       "oneClick": false,
       "perMachine": false,
-      "allowToChangeInstallationDirectory": true
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "license": "build/license.txt",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "My Pet Buddy",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "uninstallDisplayName": "My Pet Buddy ${version}",
+      "artifactName": "MyPetBuddy-Setup-${version}.exe"
     },
     "publish": [
       { "provider": "github", "owner": "nycanshu", "repo": "my-pet-buddy" }

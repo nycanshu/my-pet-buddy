@@ -26,18 +26,30 @@ class AppController {
       if (process.platform === 'darwin' && app.dock) app.dock.hide();
 
       this.overlay.create();
+      this.settingsWindow.create(); // pre-create the popover so it opens instantly & flicker-free
 
-      // Broadcast store changes to the overlay renderer.
+      // Single source of truth for reacting to setting changes.
       this.store.on('change', (payload) => {
+        const { key, value } = payload;
+        // 1) forward every change to the overlay renderer
         if (this.overlay.win && !this.overlay.win.isDestroyed()) {
           this.overlay.win.webContents.send('settings:changed', payload);
+        }
+        // 2) 'enabled' consistently shows/hides the pet — no matter whether it
+        //    was toggled from the tray menu or the popover's header switch.
+        if (key === 'enabled') {
+          value ? this.overlay.show() : this.overlay.hide();
+        }
+        // 3) launch-at-login reflects to the OS
+        if (key === 'launchOnLogin') {
+          this.launchAgent.set(value);
         }
       });
 
       const router = new IpcRouter({
         store: this.store,
         overlayManager: this.overlay,
-        onOpenSettings: () => this.settingsWindow.open(),
+        onOpenSettings: () => this.settingsWindow.toggle(),
         onTogglePet: () => this._togglePet(),
       });
       router.register();
@@ -45,16 +57,15 @@ class AppController {
       this.tray = new TrayController({
         store: this.store,
         onToggle: () => this._togglePet(),
-        onOpenSettings: () => this.settingsWindow.open(),
+        onOpenPanel: (bounds) => this.settingsWindow.toggle(bounds),
         onToggleLaunch: (checked) => this.store.set('launchOnLogin', checked),
         onQuit: () => app.quit(),
       });
       this.tray.build();
 
+      // Reflect persisted enabled/launch state on startup.
       this.launchAgent.set(this.store.get('launchOnLogin'));
-      this.store.on('change', ({ key, value }) => {
-        if (key === 'launchOnLogin') this.launchAgent.set(value);
-      });
+      if (this.store.get('enabled')) this.overlay.show(); else this.overlay.hide();
 
       if (app.isPackaged) this.updater.start();
     });
@@ -63,9 +74,9 @@ class AppController {
   }
 
   _togglePet() {
-    const enabled = !this.store.get('enabled');
-    this.store.set('enabled', enabled);
-    enabled ? this.overlay.show() : this.overlay.hide();
+    // Just flip the flag — the store 'change' handler does the show/hide,
+    // so tray and popover toggles behave identically.
+    this.store.set('enabled', !this.store.get('enabled'));
   }
 }
 

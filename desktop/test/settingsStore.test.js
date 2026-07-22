@@ -40,3 +40,14 @@ test('getAll merges defaults with stored', () => {
   assert.strictEqual(all.theme, 'dark');
   assert.strictEqual(all.species, 'cat');
 });
+
+test('set is a no-op (no emit) when the value is unchanged', () => {
+  const store = new SettingsStore(fakeBackend({ species: 'dog' }), DEFAULTS);
+  const events = [];
+  store.on('change', (e) => events.push(e));
+  store.set('species', 'dog');   // same as stored
+  store.set('enabled', true);    // same as default
+  assert.deepStrictEqual(events, []);
+  store.set('species', 'cat');   // real change
+  assert.deepStrictEqual(events, [{ key: 'species', value: 'cat' }]);
+});

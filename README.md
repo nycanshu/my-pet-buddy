@@ -97,7 +97,7 @@ Want your pet to walk across your **whole screen**, over every app — not just 
 - 🧭 Lives in the **menu bar** (macOS) / **system tray** (Windows) — no window clutter, no close button
 - ⚙️ Pick your pet + theme, settings persist, optional launch-at-login, auto-updates
 
-**Install:** grab the latest `.dmg` (macOS) or `.exe` (Windows) from [Releases](https://github.com/nycanshu/my-pet-buddy/releases).
+**Install:** grab the latest `.dmg` (macOS) or `.exe` (Windows) from [Releases](https://github.com/nycanshu/my-pet-buddy/releases). Windows users: see the step-by-step **[Windows install guide](INSTALL-WINDOWS.md)**.
 
 **Develop / build:** see [`desktop/README.md`](desktop/README.md).
 

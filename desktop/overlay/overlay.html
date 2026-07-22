@@ -12,7 +12,8 @@
     #pet {
       position: absolute; bottom: 0; left: 0;
       width: 90px; height: 90px; object-fit: contain;
-      will-change: transform, left;
+      will-change: transform;
+      transform: translateZ(0); /* promote to its own compositor layer */
     }
   </style>
 </head>
@@ -49,20 +50,34 @@
         assetBase: '../assets/pets',
         theme,
         motivationEnabled: all.motivationEnabled,
+        position: all.position,
+        motionMode: all.motionMode,
       });
       walker.setPet(all.species, all.variant);
       if (all.enabled) walker.start();
 
       // Click-through except when hovering the pet.
+      // Throttled to ~30fps — no need to hit-test on every single mousemove.
       const petEl = document.getElementById('pet');
       let interactive = false;
+      let lastCheck = 0;
       window.addEventListener('mousemove', (e) => {
+        const now = e.timeStamp;
+        if (now - lastCheck < 33) return;
+        lastCheck = now;
         const r = petEl.getBoundingClientRect();
         const over = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
         if (over !== interactive) {
           interactive = over;
           window.petBuddy.overlay.setInteractive(over);
         }
+      });
+
+      // Battery saver: stop animating when the overlay isn't actually visible
+      // (display asleep, screen locked, or fully covered by a fullscreen app).
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) walker.suspend();
+        else walker.resume();
       });
 
       // Live settings updates.
@@ -75,6 +90,10 @@
           value ? walker.start() : walker.stop();
         } else if (key === 'motivationEnabled') {
           walker.setMotivation(value);
+        } else if (key === 'position') {
+          walker.setPosition(value);
+        } else if (key === 'motionMode') {
+          walker.setMotion(value);
         } else if (key === 'theme') {
           walker.setTheme(value === 'system'
             ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')

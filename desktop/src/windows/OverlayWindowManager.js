@@ -22,7 +22,12 @@ class OverlayWindowManager {
     }
     this.win.loadFile(path.join(__dirname, '..', '..', 'overlay', 'overlay.html'));
 
-    screen.on('display-metrics-changed', () => this.applyDisplayBounds());
+    // Keep the overlay fitted to the primary display on ANY display change:
+    // resolution/scaling change, or a monitor being plugged in / unplugged.
+    const refit = () => this.applyDisplayBounds();
+    screen.on('display-metrics-changed', refit);
+    screen.on('display-added', refit);
+    screen.on('display-removed', refit);
     return this.win;
   }
 
