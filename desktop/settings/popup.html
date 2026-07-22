@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pet Buddy</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../shared/theme-tokens.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            width: 400px;
+            min-height: 500px;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+
+        .my-pet-header {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .my-pet-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .my-pet-social-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .my-pet-social-link {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .my-pet-social-link.github {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #e9ecef;
+        }
+
+        .my-pet-social-link.github:hover {
+            background: #333;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .my-pet-social-link.website {
+            background: #e3f2fd;
+            color: #1976d2;
+            border: 1px solid #bbdefb;
+        }
+
+        .my-pet-social-link.website:hover {
+            background: #1976d2;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        button.my-pet-social-link.theme {
+            background: #fff3e0;
+            color: #bf360c;
+            border: 1px solid #ffcc80;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        button.my-pet-social-link.theme:hover {
+            background: #bf360c;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .my-pet-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .my-pet-toggle {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #e9ecef;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .my-pet-toggle.active {
+            background: #007bff;
+        }
+
+        .my-pet-toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .my-pet-toggle.active .my-pet-toggle-slider {
+            transform: translateX(26px);
+        }
+
+        .my-pet-selection {
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .my-pet-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .my-pet-option:hover {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .my-pet-option.selected {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .my-pet-radio {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: #4CAF50;
+        }
+
+
+        .my-pet-cat-gallery {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 0 20px 15px 20px;
+            border: 1px solid #e9ecef;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
+        }
+
+        .my-pet-gallery-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .my-pet-cat-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .my-pet-group-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 5px;
+        }
+
+        .my-pet-group {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        }
+
+        .my-pet-cat-item {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .my-pet-cat-item:hover {
+            background: #e9ecef;
+            border-color: #007bff;
+        }
+
+        .my-pet-cat-item.selected {
+            border-color: #007bff;
+            background: #007bff;
+            color: white;
+        }
+
+        .my-pet-cat-image {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .my-pet-cat-item:hover .my-pet-cat-image {
+            transform: scale(1.05);
+        }
+
+        .my-pet-cat-name {
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 6px;
+            color: #6c757d;
+        }
+
+        .my-pet-cat-item.selected .my-pet-cat-name {
+            color: white;
+        }
+
+        .my-pet-position-control {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 20px 8px 20px;
+            border: 1px solid #e9ecef;
+            width: calc(100% - 40px);
+            box-sizing: border-box;
+        }
+
+        .my-pet-position-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .my-pet-position-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .my-pet-motivation-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .my-pet-position-btn {
+            flex: 1;
+            padding: 10px 6px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+            color: #6c757d;
+        }
+
+        .my-pet-position-btn:hover {
+            border-color: #007bff;
+            background: #e7f3ff;
+        }
+
+        .my-pet-position-btn.active {
+            border-color: #007bff;
+            background: #007bff;
+            color: white;
+        }
+
+        .my-pet-position-btn .position-icon {
+            font-size: 14px;
+            margin-bottom: 2px;
+            display: block;
+        }
+
+
+        .my-pet-label {
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .my-pet-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .my-pet-btn {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .my-pet-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .my-pet-btn:hover::before {
+            left: 100%;
+        }
+
+        .my-pet-save {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .my-pet-save:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .my-pet-disable {
+            background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
+            color: white;
+        }
+
+        .my-pet-disable:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(244, 67, 54, 0.3);
+        }
+
+        .my-pet-status {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Attribution Footer */
+        .my-pet-attribution {
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 12px 20px;
+            margin-top: 10px;
+        }
+
+        .my-pet-attribution-text {
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .my-pet-attribution-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .my-pet-attribution-link:hover {
+            color: #5a6fd8;
+        }
+
+        .my-pet-attribution-link i {
+            font-size: 14px;
+        }
+
+        /* Dark mode — toggled via the theme button in the header.
+           On first open, popup.js picks light/dark from the OS preference and
+           applies one of these classes; subsequent toggles persist to storage. */
+        body.theme-dark {
+            background: #181a1f;
+            color: #e6e6e6;
+        }
+
+        body.theme-dark .my-pet-header {
+            background: #22252b;
+            border-bottom-color: #2e323a;
+        }
+
+        body.theme-dark .my-pet-title {
+            color: #f0f0f0;
+        }
+
+        body.theme-dark .my-pet-toggle {
+            background: #3a3f48;
+        }
+
+        body.theme-dark .my-pet-social-link.github {
+            background: #2a2e36;
+            color: #e0e0e0;
+            border-color: #3a3f48;
+        }
+
+        body.theme-dark .my-pet-social-link.github:hover {
+            background: #f0f0f0;
+            color: #181a1f;
+        }
+
+        body.theme-dark .my-pet-social-link.website {
+            background: #1e2a3a;
+            color: #5aa9ff;
+            border-color: #2a3a4f;
+        }
+
+        body.theme-dark button.my-pet-social-link.theme {
+            background: #2a2418;
+            color: #ffb74d;
+            border-color: #4a3a20;
+        }
+
+        body.theme-dark button.my-pet-social-link.theme:hover {
+            background: #ffb74d;
+            color: #181a1f;
+        }
+
+        body.theme-dark .my-pet-position-control,
+        body.theme-dark .my-pet-cat-gallery {
+            background: #22252b;
+            border-color: #2e323a;
+        }
+
+        body.theme-dark .my-pet-position-title,
+        body.theme-dark .my-pet-gallery-title {
+            color: #f0f0f0;
+        }
+
+        body.theme-dark .my-pet-group-header {
+            color: #d0d0d0;
+            border-bottom-color: #2e323a;
+        }
+
+        body.theme-dark .my-pet-position-btn {
+            background: #2a2e36;
+            border-color: #3a3f48;
+            color: #c0c0c0;
+        }
+
+        body.theme-dark .my-pet-position-btn:hover {
+            background: #1e2a3a;
+            border-color: #5aa9ff;
+        }
+
+        body.theme-dark .my-pet-cat-item {
+            background: #2a2e36;
+        }
+
+        body.theme-dark .my-pet-cat-item:hover {
+            background: #34394a;
+            border-color: #5aa9ff;
+        }
+
+        body.theme-dark .my-pet-cat-name {
+            color: #b0b0b0;
+        }
+
+        body.theme-dark .my-pet-attribution {
+            background: #1e2026;
+            border-top-color: #2e323a;
+        }
+
+        body.theme-dark .my-pet-attribution-text {
+            color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="my-pet-header">
+        <div class="my-pet-header-left">
+            <h2 class="my-pet-title">
+                <img src="logo.png" alt="My Pet Buddy" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">
+                My Pet Buddy
+            </h2>
+            <div class="my-pet-social-links">
+                <a href="https://github.com/nycanshu" target="_blank" class="my-pet-social-link github" title="GitHub Profile">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" id="website-link" target="_blank" class="my-pet-social-link website" title="Website">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <button id="theme-toggle" class="my-pet-social-link theme" title="Toggle dark mode" type="button">
+                    <i id="theme-toggle-icon" class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="my-pet-toggle" id="my-pet-toggle">
+            <div class="my-pet-toggle-slider"></div>
+        </div>
+    </div>
+
+    <div class="my-pet-position-control">
+        <div class="my-pet-motivation-row">
+            <h3 class="my-pet-position-title" style="margin-bottom: 0;">Motivational messages</h3>
+            <div class="my-pet-toggle" id="my-pet-motivation-toggle">
+                <div class="my-pet-toggle-slider"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-pet-cat-gallery">
+        <h3 class="my-pet-gallery-title">Choose Your Pet Companion</h3>
+        <div class="my-pet-cat-grid" id="my-pet-cat-grid">
+            <!-- Dynamic pet items will be generated here -->
+        </div>
+    </div>
+
+    <!-- Attribution Footer -->
+    <div class="my-pet-attribution">
+        <p class="my-pet-attribution-text">
+            Made with <i class="fas fa-heart" style="color: #ff6b6b;"></i> by 
+            <a href="https://github.com/nycanshu" target="_blank" class="my-pet-attribution-link">
+                <i class="fab fa-github"></i> nycanshu
+            </a>
+            <a href="https://www.linkedin.com/in/okay-anshu/" target="_blank" class="my-pet-attribution-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </p>
+    </div>
+
+    <script>
+    // Adapt the extension's chrome.storage.sync API to the desktop IPC facade,
+    // so the reused popup.js keeps working with minimal edits.
+    window.chrome = window.chrome || {};
+    window.chrome.storage = {
+      sync: {
+        async get(keys, cb) {
+          const all = await window.petBuddy.settings.getAll();
+          const out = {};
+          const list = Array.isArray(keys) ? keys : Object.keys(keys || all);
+          for (const k of list) out[k] = all[k];
+          cb(out);
+        },
+        async set(obj, cb) {
+          for (const [k, v] of Object.entries(obj)) {
+            await window.petBuddy.settings.set(k, v);
+          }
+          if (cb) cb();
+        },
+      },
+      onChanged: { addListener() {} },
+    };
+    // The overlay uses chrome.runtime.getURL for pet images; in the settings
+    // window map it to the copied assets folder instead.
+    window.chrome.runtime = window.chrome.runtime || {
+      getURL: (p) => '../assets/' + String(p).replace(/^\/?/, ''),
+    };
+  </script>
+    <script src="popup.js"></script>
+</body>
+</html>

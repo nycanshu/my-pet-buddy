@@ -88,9 +88,21 @@ If you want to contribute or test locally:
 - **Other Chromium-based**: Brave, Opera, etc. (via Chrome Web Store)
 - **Firefox**: Not supported (uses Chrome-specific APIs)
 
+## 🖥️ Desktop App (macOS & Windows)
+
+Want your pet to walk across your **whole screen**, over every app — not just web pages? My Pet Buddy also ships as a lightweight desktop app built with Electron.
+
+- 🐾 A pet paces the bottom of your screen, floating over any app (VS Code, browsers, …)
+- 💕 Click the pet for floating hearts, plus periodic motivational messages
+- 🧭 Lives in the **menu bar** (macOS) / **system tray** (Windows) — no window clutter, no close button
+- ⚙️ Pick your pet + theme, settings persist, optional launch-at-login, auto-updates
+
+**Install:** grab the latest `.dmg` (macOS) or `.exe` (Windows) from [Releases](https://github.com/nycanshu/my-pet-buddy/releases).
+
+**Develop / build:** see [`desktop/README.md`](desktop/README.md).
 
 ### 📋 Contribution Guidelines
-see our [CONTRIBUTING.md](contribution/CONTRIBUTING.md) file.
+see our [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 ## 📄 License
 

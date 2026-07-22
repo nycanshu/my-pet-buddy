@@ -1,0 +1,59 @@
+{
+  "name": "my-pet-buddy-desktop",
+  "version": "1.0.0",
+  "description": "My Pet Buddy — desktop pet that walks over all your apps.",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "copy-assets": "node scripts/copy-assets.js",
+    "prestart": "node scripts/copy-assets.js",
+    "start": "electron .",
+    "test": "node --test 'test/*.test.js'",
+    "dist": "npm run copy-assets && electron-builder",
+    "dist:mac": "npm run copy-assets && electron-builder --mac --publish always",
+    "dist:win": "npm run copy-assets && electron-builder --win --publish always"
+  },
+  "author": "My Pet Buddy Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "electron-store": "^8.2.0",
+    "electron-updater": "^6.3.9"
+  },
+  "build": {
+    "appId": "com.mypetbuddy.desktop",
+    "productName": "My Pet Buddy",
+    "directories": { "output": "release", "buildResources": "build" },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "overlay/**/*",
+      "settings/**/*",
+      "shared/**/*",
+      "assets/**/*",
+      "!test/**",
+      "!**/*.test.js"
+    ],
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["universal"] }],
+      "category": "public.app-category.entertainment",
+      "icon": "build/icon.png"
+    },
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": [
+      { "provider": "github", "owner": "nycanshu", "repo": "my-pet-buddy" }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      background: transparent; overflow: hidden;
+      -webkit-user-select: none; user-select: none;
+    }
+    #stage { position: fixed; inset: 0; }
+    #pet {
+      position: absolute; bottom: 0; left: 0;
+      width: 90px; height: 90px; object-fit: contain;
+      will-change: transform, left;
+    }
+  </style>
+</head>
+<body>
+  <div id="stage"><img id="pet" alt="pet" /></div>
+
+  <style>
+    .pb-heart { position: fixed; font-size: 20px; pointer-events: none; z-index: 10; }
+    @keyframes pb-heart-float {
+      0%   { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-70px) scale(1.4); }
+    }
+    .pb-bubble {
+      position: fixed; transform: translateX(-50%);
+      background: #ffffff; color: #2c3e50; border: 1px solid #e9ecef;
+      padding: 8px 12px; border-radius: 12px; font: 13px -apple-system, 'Segoe UI', sans-serif;
+      box-shadow: 0 4px 14px rgba(0,0,0,.15); pointer-events: none; z-index: 10; white-space: nowrap;
+    }
+    .pb-bubble.theme-dark { background: #2c3e50; color: #f8f9fa; border-color: #3a4a5e; }
+  </style>
+
+  <script src="pets.js"></script>
+  <script src="../src/walker/pacing.js"></script>
+  <script src="PetWalker.js"></script>
+  <script>
+    async function boot() {
+      const stage = document.getElementById('stage');
+      const all = await window.petBuddy.settings.getAll();
+      const theme = all.theme === 'system'
+        ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        : all.theme;
+
+      const walker = new PetWalker(stage, {
+        assetBase: '../assets/pets',
+        theme,
+        motivationEnabled: all.motivationEnabled,
+      });
+      walker.setPet(all.species, all.variant);
+      if (all.enabled) walker.start();
+
+      // Click-through except when hovering the pet.
+      const petEl = document.getElementById('pet');
+      let interactive = false;
+      window.addEventListener('mousemove', (e) => {
+        const r = petEl.getBoundingClientRect();
+        const over = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        if (over !== interactive) {
+          interactive = over;
+          window.petBuddy.overlay.setInteractive(over);
+        }
+      });
+
+      // Live settings updates.
+      window.petBuddy.settings.onChange(({ key, value }) => {
+        const s = window.__petState = window.__petState || {};
+        s[key] = value;
+        if (key === 'species' || key === 'variant') {
+          walker.setPet(s.species || all.species, s.variant || all.variant);
+        } else if (key === 'enabled') {
+          value ? walker.start() : walker.stop();
+        } else if (key === 'motivationEnabled') {
+          walker.setMotivation(value);
+        } else if (key === 'theme') {
+          walker.setTheme(value === 'system'
+            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            : value);
+        }
+      });
+    }
+    boot();
+  </script>
+</body>
+</html>

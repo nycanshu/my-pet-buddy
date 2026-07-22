@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+
+# Desktop app build artifacts (generated — not source)
+#   desktop/assets/  is produced by desktop/scripts/copy-assets.js from root pets/ + icons/
+#   desktop/release/ is the electron-builder installer output (.dmg / .exe)
+desktop/assets/
+desktop/release/
+
+# Logs & debug
+*.log
+npm-debug.log*
+
+# Packaged archives
+*.zip
+
+# Superpowers working docs (design specs & plans).
+# Remove this line if you want to commit the design docs to the repo.
+docs/superpowers/

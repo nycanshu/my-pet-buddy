@@ -1,0 +1,21 @@
+/* Single source of truth for design tokens, lifted from the extension popup.html. */
+:root {
+  --pb-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --pb-bg: #f8f9fa;
+  --pb-surface: #ffffff;
+  --pb-text: #2c3e50;
+  --pb-accent: #007bff;
+  --pb-accent-2: #1976d2;
+  --pb-warm-bg: #fff3e0;
+  --pb-warm-fg: #bf360c;
+  --pb-border: #e9ecef;
+  --pb-radius: 6px;
+  --pb-radius-lg: 12px;
+  --pb-motion: 0.2s ease;
+}
+[data-theme='dark'] {
+  --pb-bg: #1e2733;
+  --pb-surface: #2c3e50;
+  --pb-text: #f8f9fa;
+  --pb-border: #3a4a5e;
+}
