@@ -3,7 +3,7 @@ name: 📝 General Issue
 about: For general questions, discussions, or other issues
 title: '[GENERAL] '
 labels: ['question', 'discussion']
-assignees: ''
+assignees: nycanshu
 ---
 
 ## 📝 Issue Type

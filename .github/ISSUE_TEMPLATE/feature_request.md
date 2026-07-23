@@ -3,7 +3,7 @@ name: ✨ Feature Request
 about: Suggest a new feature for My Pet Buddy
 title: '[FEATURE] '
 labels: ['enhancement', 'feature-request', 'needs-review']
-assignees: ''
+assignees: nycanshu
 ---
 
 ## ✨ Feature Summary
