@@ -3,7 +3,7 @@ name: 💡 Suggestion
 about: Share your ideas to improve My Pet Buddy
 title: '[SUGGESTION] '
 labels: ['enhancement', 'suggestion', 'needs-review']
-assignees: ''
+assignees: nycanshu
 ---
 
 ## 💡 Suggestion Summary

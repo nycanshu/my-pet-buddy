@@ -3,7 +3,7 @@ name: 🐛 Bug Report
 about: Create a report to help us improve My Pet Buddy
 title: '[BUG] '
 labels: ['bug', 'needs-triage']
-assignees: ''
+assignees: nycanshu
 ---
 
 ## 🐛 Bug Description

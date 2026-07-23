@@ -1,0 +1,77 @@
+{
+  "name": "my-pet-buddy-desktop",
+  "version": "1.0.5",
+  "description": "My Pet Buddy — desktop pet that walks over all your apps.",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "copy-assets": "node scripts/copy-assets.js",
+    "prestart": "node scripts/copy-assets.js",
+    "start": "electron .",
+    "test": "node --test 'test/*.test.js'",
+    "dist": "npm run copy-assets && electron-builder",
+    "dist:mac": "npm run copy-assets && electron-builder --mac --publish always",
+    "dist:win": "npm run copy-assets && electron-builder --win --publish always",
+    "dist:all": "npm run copy-assets && electron-builder --mac --win --publish never",
+    "release": "npm run copy-assets && electron-builder --mac --win --publish always",
+    "bump:patch": "npm version patch --no-git-tag-version",
+    "bump:minor": "npm version minor --no-git-tag-version",
+    "bump:major": "npm version major --no-git-tag-version"
+  },
+  "author": "My Pet Buddy Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "electron-store": "^8.2.0",
+    "electron-updater": "^6.3.9"
+  },
+  "build": {
+    "appId": "com.mypetbuddy.desktop",
+    "productName": "My Pet Buddy",
+    "directories": { "output": "release", "buildResources": "build" },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "overlay/**/*",
+      "settings/**/*",
+      "shared/**/*",
+      "assets/**/*",
+      "!test/**",
+      "!**/*.test.js"
+    ],
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["universal"] }],
+      "category": "public.app-category.entertainment",
+      "icon": "build/icon.png",
+      "artifactName": "MyPetBuddy-${version}-${arch}.dmg",
+      "extendInfo": {
+        "LSUIElement": true
+      }
+    },
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "license": "build/license.txt",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "My Pet Buddy",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "uninstallDisplayName": "My Pet Buddy ${version}",
+      "artifactName": "MyPetBuddy-Setup-${version}.exe"
+    },
+    "publish": [
+      { "provider": "github", "owner": "nycanshu", "repo": "my-pet-buddy" }
+    ]
+  }
+}

@@ -2,6 +2,15 @@
 
 Thank you for your interest in contributing to My Pet Buddy! This guide will help you understand how to contribute to this project effectively.
 
+## 📦 What's in this repo
+
+My Pet Buddy ships as **two apps that share the same pet art and animation logic**:
+
+- **Browser extension** (repo root) — pets parade across web pages. Chrome, Edge, and other Chromium browsers.
+- **Desktop app** (`desktop/`) — an Electron app where a pet walks across your whole screen, over every app. macOS + Windows.
+
+Both use the same PNG pets in `pets/`, so adding a pet benefits both. Extension contribution is covered first; the Desktop App section near the end covers the Electron app.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -239,6 +248,51 @@ pets/
 - ✅ Transparent background
 - ✅ High quality and clear
 - ✅ Original or properly licensed content
+
+## 🖥️ Desktop App (Electron)
+
+My Pet Buddy also ships as a desktop app (`desktop/`) that walks a pet across your
+whole screen, over any app. It reuses the same pet art and animation logic as the
+browser extension.
+
+### Run it locally
+```bash
+cd desktop
+npm install
+npm start
+```
+The pet appears at the bottom of your screen. Control it from the menu-bar (macOS)
+or system-tray (Windows) icon: Show/Hide, Settings, Launch at Login, Quit.
+
+### Project layout
+- `main.js` — app bootstrap (AppController)
+- `src/store/` — settings (electron-store) + defaults
+- `src/walker/pacing.js` — pure pacing math (unit-tested)
+- `overlay/` — the transparent pet overlay (`PetWalker.js`, reused `pets.js`)
+- `settings/` — the settings window (reused extension `popup.html`)
+- `src/windows/`, `src/tray/`, `src/system/`, `src/ipc/` — window/tray/OS/IPC managers
+
+### Tests
+```bash
+cd desktop
+npm test        # pacing + settings unit tests
+```
+
+### Adding a new pet
+Same rules as the **Adding New Pets** section above: add six transparent PNGs
+`pets/<species>-1..6.png` at the repo root, then register the species in `pets.js`.
+The desktop app copies `pets/` into its bundle automatically, so a new pet shows up
+in both the extension and the desktop app.
+
+### Building installers
+```bash
+cd desktop
+npm run dist        # current platform
+npm run dist:mac    # universal .dmg (run on macOS)
+npm run dist:win    # .exe (run on Windows or CI)
+```
+Tagged pushes (`v*`) trigger `.github/workflows/desktop-release.yml`, which builds
+the macOS `.dmg` and Windows `.exe` and publishes them to GitHub Releases.
 
 ## 🆘 Getting Help
 
