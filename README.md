@@ -1,6 +1,8 @@
-# My Pet Buddy - Virtual Pet Companion 🐱🐶
+# My Pet Buddy 🐾
 
-A delightful browser extension that brings adorable animated pets to your browser! Choose from cats, dogs, and other cute animals that parade along your screen, creating a fun and engaging browsing experience for pet lovers and animal enthusiasts.
+**A tiny virtual pet that walks across your screen and keeps you company while you work — now on your browser AND your Mac & Windows desktop.** 🎉
+
+Pick your buddy — cat, dog, bunny, hamster, or birdie — click 'em for a burst of hearts, catch a little motivational nudge when you need it, and let them parade around while you grind. No ads. No sign-up. 100% free and open source. Just vibes. 🐱🐶🐰
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-5.0%20⭐-green?style=for-the-badge&logo=google-chrome)](https://chromewebstore.google.com/detail/my-pet-buddy-virtual-pet/fpgcioopagdmanbgjikghomglhmjfnne)
 [![Microsoft Edge](https://img.shields.io/badge/Microsoft%20Edge-Add--ons-blue?style=for-the-badge&logo=microsoft-edge)](https://microsoftedge.microsoft.com/addons/detail/my-pet-buddy-virtual-pe/ffpmifppjfofiakekjaakgeiakkophad)
@@ -8,6 +10,18 @@ A delightful browser extension that brings adorable animated pets to your browse
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://github.com/nycanshu/my-pet-buddy/blob/main/LICENSE)
 
 <img width="1920" height="960" alt="file cover - 1" src="https://github.com/user-attachments/assets/425ded76-d3e0-4555-bb9f-22830ec0ebd6" />
+
+## 🖥️ NEW: it broke out of the browser — now on Desktop!
+
+Your buddy doesn't need a browser tab anymore. The **desktop app** puts a pet on your **whole screen**, strolling over every app you've got open (yeah, even while you're buried in VS Code 😏). Same cute pets, now living in your **menu bar (Mac)** / **system tray (Windows)** — click the icon and a little popover pops right out.
+
+| Get it | |
+|---|---|
+| 🍎 **macOS** | [Download the `.dmg`](https://github.com/nycanshu/my-pet-buddy/releases) |
+| 🪟 **Windows** | [Download the installer](https://github.com/nycanshu/my-pet-buddy/releases) · [1-min install guide](INSTALL-WINDOWS.md) |
+| 🍺 **Homebrew** | `brew install --cask nycanshu/tap/my-pet-buddy` *(coming soon)* |
+
+Walks over any app · click for hearts 💕 · motivational nudges ✨ · dark mode 🌙 · picks up where it left off. Free forever.
 
 ## ✨ Features
 

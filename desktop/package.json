@@ -1,6 +1,6 @@
 {
   "name": "my-pet-buddy-desktop",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "My Pet Buddy — desktop pet that walks over all your apps.",
   "main": "main.js",
   "type": "commonjs",
@@ -47,7 +47,10 @@
       "target": [{ "target": "dmg", "arch": ["universal"] }],
       "category": "public.app-category.entertainment",
       "icon": "build/icon.png",
-      "artifactName": "MyPetBuddy-${version}-${arch}.dmg"
+      "artifactName": "MyPetBuddy-${version}-${arch}.dmg",
+      "extendInfo": {
+        "LSUIElement": true
+      }
     },
     "win": {
       "target": [{ "target": "nsis", "arch": ["x64"] }],

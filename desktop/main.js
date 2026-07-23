@@ -23,7 +23,14 @@ class AppController {
     if (!gotLock) { app.quit(); return; }
 
     app.whenReady().then(() => {
-      if (process.platform === 'darwin' && app.dock) app.dock.hide();
+      if (process.platform === 'darwin') {
+        // Register as a menu-bar AGENT app: no Dock icon, and — crucially —
+        // focusing our popover never "activates" the app onto its own Space,
+        // so clicking the tray icon while in a fullscreen app no longer yanks
+        // you back to the desktop. (Paired with LSUIElement in the Info.plist.)
+        app.setActivationPolicy('accessory');
+        if (app.dock) app.dock.hide();
+      }
 
       this.overlay.create();
       this.settingsWindow.create(); // pre-create the popover so it opens instantly & flicker-free
