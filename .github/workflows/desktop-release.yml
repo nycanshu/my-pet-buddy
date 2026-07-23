@@ -6,6 +6,10 @@ on:
       - 'v*'
   workflow_dispatch:
 
+# Allow the built-in GITHUB_TOKEN to create/upload the GitHub Release.
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
