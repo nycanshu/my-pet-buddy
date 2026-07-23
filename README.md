@@ -19,7 +19,9 @@ Your buddy doesn't need a browser tab anymore. The **desktop app** puts a pet on
 |---|---|
 | 🍎 **macOS** | [Download the `.dmg`](https://github.com/nycanshu/my-pet-buddy/releases) |
 | 🪟 **Windows** | [Download the installer](https://github.com/nycanshu/my-pet-buddy/releases) · [1-min install guide](INSTALL-WINDOWS.md) |
-| 🍺 **Homebrew** | `brew install --cask nycanshu/tap/my-pet-buddy` *(coming soon)* |
+| 🍺 **Homebrew** | `brew tap nycanshu/tap && brew trust nycanshu/tap && brew install --cask my-pet-buddy` |
+
+> **First launch (unsigned build):** on macOS, right-click the app → **Open** → **Open**; on Windows, click **More info → Run anyway**. One time only. (Homebrew installs skip this — it strips the quarantine for you.)
 
 Walks over any app · click for hearts 💕 · motivational nudges ✨ · dark mode 🌙 · picks up where it left off. Free forever.
 
